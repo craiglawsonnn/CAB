@@ -1,3 +1,5 @@
+import { basePath } from '@/lib/basePath';
+
 export interface BeforeAfterPair {
   id: string;
   beforeSrc: string;
@@ -30,7 +32,7 @@ export interface SiteConfig {
   businessName: string;
   phoneDisplay: string;
   phoneHref: string;
-  instagramDmUrl: string;
+  instagramDmUrl: string | null;
   logoSrc: string;
   heroImageSrc: string;
   googleReview: GoogleReviewConfig;
@@ -49,10 +51,10 @@ export const siteConfig: SiteConfig = {
   businessName: 'CAB Premium Detailing',
   phoneDisplay: '(406) 609-5321',
   phoneHref: 'tel:+14066095321',
-  // Placeholder until the real Instagram handle is supplied.
-  instagramDmUrl: 'https://instagram.com/direct/inbox/',
-  logoSrc: '/images/logo.jpg',
-  heroImageSrc: '/images/hero.jpg',
+  // Pending until the real Instagram handle is supplied.
+  instagramDmUrl: null,
+  logoSrc: `${basePath}/images/logo.jpg`,
+  heroImageSrc: `${basePath}/images/hero.jpg`,
   googleReview: {
     rating: 4.9,
     reviewCount: 50,
@@ -62,48 +64,48 @@ export const siteConfig: SiteConfig = {
   beforeAfterPairs: [
     {
       id: 'driver-door',
-      beforeSrc: '/images/driver-door-before.jpg',
-      afterSrc: '/images/driver-door-after.jpg',
+      beforeSrc: `${basePath}/images/driver-door-before.jpg`,
+      afterSrc: `${basePath}/images/driver-door-after.jpg`,
       beforeAlt: 'Driver door interior before detailing',
       afterAlt: 'Driver door interior after detailing',
       caption: 'Driver Door: Leather & Trim Restoration',
     },
     {
       id: 'passenger',
-      beforeSrc: '/images/passenger-before.jpg',
-      afterSrc: '/images/passenger-after.jpg',
+      beforeSrc: `${basePath}/images/passenger-before.jpg`,
+      afterSrc: `${basePath}/images/passenger-after.jpg`,
       beforeAlt: 'Passenger area before detailing',
       afterAlt: 'Passenger area after detailing',
       caption: 'Passenger Area: Full Interior Detail',
     },
     {
       id: 'behind-seats',
-      beforeSrc: '/images/behind-seats-before.jpg',
-      afterSrc: '/images/behind-seats-after.jpg',
+      beforeSrc: `${basePath}/images/behind-seats-before.jpg`,
+      afterSrc: `${basePath}/images/behind-seats-after.jpg`,
       beforeAlt: 'Behind seats and floor mats before detailing',
       afterAlt: 'Behind seats and floor mats after detailing',
       caption: 'Deep Carpet Extraction & Floor Mat Care',
     },
     {
       id: 'boot-1',
-      beforeSrc: '/images/boot-1-before.jpg',
-      afterSrc: '/images/boot-1-after.jpg',
+      beforeSrc: `${basePath}/images/boot-1-before.jpg`,
+      afterSrc: `${basePath}/images/boot-1-after.jpg`,
       beforeAlt: 'Trunk cargo area before detailing',
       afterAlt: 'Trunk cargo area after detailing',
       caption: 'Full Trunk & Cargo Bay Detail',
     },
     {
       id: 'boot-2',
-      beforeSrc: '/images/boot-2-before.jpg',
-      afterSrc: '/images/boot-2-after.jpg',
+      beforeSrc: `${basePath}/images/boot-2-before.jpg`,
+      afterSrc: `${basePath}/images/boot-2-after.jpg`,
       beforeAlt: 'SUV cargo area before detailing',
       afterAlt: 'SUV cargo area after detailing',
       caption: 'SUV Cargo Bay Detail',
     },
     {
       id: 'car-door',
-      beforeSrc: '/images/car-door-before.jpg',
-      afterSrc: '/images/car-door-after.jpg',
+      beforeSrc: `${basePath}/images/car-door-before.jpg`,
+      afterSrc: `${basePath}/images/car-door-after.jpg`,
       beforeAlt: 'Car door panel before detailing',
       afterAlt: 'Car door panel after detailing',
       caption: 'Door Panel Interior Restoration',
@@ -126,9 +128,9 @@ export const siteConfig: SiteConfig = {
     { id: 'odor', name: 'Odor Elimination', detail: 'Ozone Treatment', price: '$50' },
   ],
   pricingImages: {
-    addons: '/images/addons.jpg',
-    prices: '/images/prices.jpg',
-    headlight: '/images/headlight-restore.jpg',
-    details: '/images/details.jpg',
+    addons: `${basePath}/images/addons.jpg`,
+    prices: `${basePath}/images/prices.jpg`,
+    headlight: `${basePath}/images/headlight-restore.jpg`,
+    details: `${basePath}/images/details.jpg`,
   },
 };
