@@ -1,0 +1,33 @@
+.footer {
+  border-top: 1px solid var(--color-chrome-mid);
+  padding: 48px 24px;
+}
+
+.inner {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.logo {
+  height: 40px;
+  width: auto;
+  border-radius: 6px;
+}
+
+.social {
+  display: flex;
+  gap: 24px;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+
+.social a:hover {
+  color: var(--color-text);
+}
