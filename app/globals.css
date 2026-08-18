@@ -4,7 +4,6 @@
   --color-text: #f5f2ec;
   --color-text-muted: #a89f92;
   --color-accent: #1d3ed1;
-  --color-accent-hover: #3452e0;
   /* Same cobalt hue as --color-accent, lightened for use as TEXT on the dark
      backgrounds. --color-accent itself is only 2.35:1 on --color-bg-elevated
      and 2.51:1 on --color-bg, which fails WCAG AA at any text size; this tint
@@ -29,6 +28,14 @@ html,
 body {
   margin: 0;
   padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  scroll-margin-top: 80px;
 }
 
 body {

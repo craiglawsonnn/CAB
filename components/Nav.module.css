@@ -64,6 +64,10 @@
   font-size: 14px;
 }
 
+.btnOutline:hover {
+  box-shadow: 0 0 24px rgba(29, 62, 209, 0.55);
+}
+
 .btnAccent {
   background-color: var(--color-accent);
   color: #ffffff;
@@ -74,6 +78,13 @@
 
 .btnAccent:hover {
   box-shadow: 0 0 24px rgba(29, 62, 209, 0.55);
+}
+
+.btnDisabled {
+  background-color: transparent;
+  border: 1px dashed var(--color-chrome-mid);
+  color: var(--color-text-muted);
+  cursor: default;
 }
 
 @media (max-width: 768px) {

@@ -109,6 +109,18 @@
   font-weight: 600;
 }
 
+.btnSecondary:hover {
+  box-shadow: 0 0 32px rgba(29, 62, 209, 0.6);
+}
+
+.btnDisabled {
+  background-color: transparent;
+  border: 1px dashed var(--color-chrome-mid);
+  color: var(--color-text-muted);
+  box-shadow: none;
+  cursor: default;
+}
+
 @media (max-width: 640px) {
   .actions {
     flex-direction: column;
