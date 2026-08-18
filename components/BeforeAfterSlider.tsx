@@ -59,9 +59,12 @@ export default function BeforeAfterSlider({ pair }: BeforeAfterSliderProps) {
         onPointerLeave={handlePointerUp}
       >
         <img src={pair.afterSrc} alt={pair.afterAlt} className={styles.imageAfter} />
-        <div className={styles.beforeClip} style={{ width: `${percent}%` }}>
-          <img src={pair.beforeSrc} alt={pair.beforeAlt} className={styles.imageBefore} />
-        </div>
+        <img
+          src={pair.beforeSrc}
+          alt={pair.beforeAlt}
+          className={styles.imageBefore}
+          style={{ clipPath: `inset(0 ${100 - percent}% 0 0)` }}
+        />
         <span className={styles.tagBefore}>Before</span>
         <span className={styles.tagAfter}>After</span>
         <div
