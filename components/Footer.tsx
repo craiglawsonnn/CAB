@@ -3,7 +3,7 @@ import styles from './Footer.module.css';
 export interface FooterProps {
   logoSrc: string;
   businessName: string;
-  instagramDmUrl: string;
+  instagramDmUrl: string | null;
   googleProfileUrl: string | null;
 }
 
@@ -22,7 +22,13 @@ export default function Footer({
           © {year} {businessName}. All rights reserved.
         </p>
         <div className={styles.social}>
-          <a href={instagramDmUrl}>Instagram</a>
+          {instagramDmUrl ? (
+            <a href={instagramDmUrl}>Instagram</a>
+          ) : (
+            <span className={styles.disabled} aria-disabled="true">
+              Instagram DM — coming soon
+            </span>
+          )}
           {googleProfileUrl && <a href={googleProfileUrl}>Google Page</a>}
         </div>
       </div>

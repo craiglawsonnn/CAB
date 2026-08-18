@@ -36,4 +36,10 @@ describe('Footer', () => {
     const year = new Date().getFullYear().toString();
     expect(screen.getByText(new RegExp(year))).toBeInTheDocument();
   });
+
+  it('renders a disabled pending state when instagramDmUrl is null', () => {
+    render(<Footer {...baseProps} instagramDmUrl={null} googleProfileUrl={null} />);
+    expect(screen.queryByRole('link', { name: 'Instagram' })).toBeNull();
+    expect(screen.getByText('Instagram DM — coming soon')).toBeInTheDocument();
+  });
 });

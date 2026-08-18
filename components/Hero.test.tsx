@@ -35,4 +35,10 @@ describe('Hero', () => {
     render(<Hero {...props} />);
     expect(document.getElementById('hero')).not.toBeNull();
   });
+
+  it('renders a disabled pending state when instagramDmUrl is null', () => {
+    render(<Hero {...props} instagramDmUrl={null} />);
+    expect(screen.queryByRole('link', { name: /book via instagram dm/i })).toBeNull();
+    expect(screen.getByText('Instagram DM — coming soon')).toBeInTheDocument();
+  });
 });

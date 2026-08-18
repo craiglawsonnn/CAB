@@ -30,4 +30,10 @@ describe('ContactSection', () => {
     render(<ContactSection {...props} />);
     expect(document.getElementById('contact')).not.toBeNull();
   });
+
+  it('renders a disabled pending state when instagramDmUrl is null', () => {
+    render(<ContactSection {...props} instagramDmUrl={null} />);
+    expect(screen.queryByRole('link', { name: /dm us on instagram/i })).toBeNull();
+    expect(screen.getByText('Instagram DM — coming soon')).toBeInTheDocument();
+  });
 });

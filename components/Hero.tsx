@@ -4,7 +4,7 @@ export interface HeroProps {
   heroImageSrc: string;
   phoneDisplay: string;
   phoneHref: string;
-  instagramDmUrl: string;
+  instagramDmUrl: string | null;
 }
 
 export default function Hero({
@@ -29,9 +29,15 @@ export default function Hero({
           Mobile service. Unmatched quality. Restoring high-end vehicles to showroom perfection.
         </p>
         <div className={`${styles.reveal} ${styles.actions}`} style={{ animationDelay: '360ms' }}>
-          <a href={instagramDmUrl} className={styles.btnPrimary}>
-            Book via Instagram DM
-          </a>
+          {instagramDmUrl ? (
+            <a href={instagramDmUrl} className={styles.btnPrimary}>
+              Book via Instagram DM
+            </a>
+          ) : (
+            <span className={`${styles.btnPrimary} ${styles.btnDisabled}`} aria-disabled="true">
+              Instagram DM — coming soon
+            </span>
+          )}
           <a href={phoneHref} className={styles.btnSecondary}>
             Call / Text {phoneDisplay}
           </a>

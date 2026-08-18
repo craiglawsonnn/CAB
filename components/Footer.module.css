@@ -31,3 +31,8 @@
 .social a:hover {
   color: var(--color-text);
 }
+
+.disabled {
+  color: var(--color-text-muted);
+  cursor: default;
+}

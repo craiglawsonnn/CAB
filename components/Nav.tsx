@@ -6,7 +6,7 @@ import styles from './Nav.module.css';
 export interface NavProps {
   phoneDisplay: string;
   phoneHref: string;
-  instagramDmUrl: string;
+  instagramDmUrl: string | null;
   logoSrc: string;
   businessName: string;
 }
@@ -51,9 +51,15 @@ export default function Nav({
           <a href={phoneHref} className={styles.btnOutline}>
             Call Now
           </a>
-          <a href={instagramDmUrl} className={styles.btnAccent}>
-            DM on Instagram
-          </a>
+          {instagramDmUrl ? (
+            <a href={instagramDmUrl} className={styles.btnAccent}>
+              DM on Instagram
+            </a>
+          ) : (
+            <span className={`${styles.btnAccent} ${styles.btnDisabled}`} aria-disabled="true">
+              Instagram DM — coming soon
+            </span>
+          )}
         </div>
       </div>
     </header>

@@ -49,4 +49,8 @@ describe('siteConfig', () => {
       expect(reel.embedUrl).toBeNull();
     }
   });
+
+  it('does not fabricate an Instagram DM url', () => {
+    expect(siteConfig.instagramDmUrl).toBeNull();
+  });
 });

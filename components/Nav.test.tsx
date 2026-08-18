@@ -42,4 +42,10 @@ describe('Nav', () => {
       props.logoSrc
     );
   });
+
+  it('renders a disabled pending state when instagramDmUrl is null', () => {
+    render(<Nav {...props} instagramDmUrl={null} />);
+    expect(screen.queryByRole('link', { name: 'DM on Instagram' })).toBeNull();
+    expect(screen.getByText('Instagram DM — coming soon')).toBeInTheDocument();
+  });
 });
