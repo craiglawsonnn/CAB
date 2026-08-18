@@ -1,0 +1,22 @@
+.section {
+  padding: 96px 24px;
+}
+
+.inner {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.subtitle {
+  color: var(--color-text-muted);
+  margin-top: 8px;
+}
+
+.grid {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  text-align: left;
+}
