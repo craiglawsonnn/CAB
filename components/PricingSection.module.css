@@ -51,7 +51,9 @@
 
 .price {
   font-family: var(--font-display);
-  color: var(--color-accent);
+  /* Text on --color-bg-elevated: must use the lightened accent tint.
+     --color-accent is 2.35:1 here, below WCAG AA at any size. */
+  color: var(--color-accent-text);
   white-space: nowrap;
 }
 
