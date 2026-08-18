@@ -2730,8 +2730,8 @@ module.exports = nextConfig;
 
 - [ ] **Step 2: Verify the default build has no basePath**
 
-Run: `npm run build && grep -o '"/CAB/_next' out/index.html | head -1; echo "exit: $?"`
-Expected: no match printed before `exit:` (grep finds nothing, so the pipeline's visible exit reflects `echo`, but no `/CAB/_next` string appears in the grep output).
+Run: `npm run build && grep -c '/CAB/_next' out/index.html`
+Expected output: `0`
 
 - [ ] **Step 3: Verify the GitHub Pages build has the basePath**
 
