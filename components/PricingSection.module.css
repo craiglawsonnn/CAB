@@ -13,19 +13,108 @@
   margin-top: 8px;
 }
 
-.layout {
+.packages {
   margin-top: 48px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 48px;
+  gap: 32px;
   text-align: left;
-  align-items: start;
+  align-items: stretch;
+}
+
+.packageCard {
+  background-color: var(--color-bg-elevated);
+  border: 1px solid var(--color-chrome-mid);
+  border-radius: var(--radius-card);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.packageHighlight {
+  border-color: var(--color-accent-text);
+  box-shadow: 0 0 32px rgba(29, 62, 209, 0.25);
+}
+
+.packageCard h3 {
+  font-size: 1.5rem;
+}
+
+.packageTagline {
+  color: var(--color-text-muted);
+  font-style: italic;
+  margin-top: 4px;
+}
+
+.includesNote {
+  color: var(--color-text-muted);
+  font-style: italic;
+  margin-top: 16px;
+  margin-bottom: -8px;
+}
+
+.featureList {
+  list-style: none;
+  margin: 24px 0 0;
+  padding: 0;
+  flex-grow: 1;
+}
+
+.featureList li {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(154, 148, 136, 0.2);
+}
+
+.featureList li::before {
+  content: '—';
+  color: var(--color-accent-text);
+  margin-right: 10px;
+}
+
+.featureList li:last-child {
+  border-bottom: none;
+}
+
+.packageFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-chrome-mid);
+}
+
+.duration {
+  color: var(--color-text-muted);
+  font-size: 0.85em;
+}
+
+.packagePrice {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--color-accent-text);
+  white-space: nowrap;
+}
+
+.priceNote {
+  color: var(--color-text-muted);
+  font-size: 0.8em;
+  margin-top: 8px;
+}
+
+.addonsHeading {
+  margin-top: 80px;
 }
 
 .list {
+  margin-top: 48px;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
   list-style: none;
-  margin: 0;
   padding: 0;
+  text-align: left;
   background-color: var(--color-bg-elevated);
   border: 1px solid var(--color-chrome-mid);
   border-radius: var(--radius-card);
@@ -57,22 +146,8 @@
   white-space: nowrap;
 }
 
-.imageGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-.imageGrid img {
-  border-radius: var(--radius-card);
-  border: 1px solid var(--color-chrome-mid);
-  aspect-ratio: 1;
-  object-fit: cover;
-  width: 100%;
-}
-
 @media (max-width: 768px) {
-  .layout {
+  .packages {
     grid-template-columns: 1fr;
   }
 }

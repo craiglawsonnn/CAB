@@ -14,6 +14,7 @@ export interface NavProps {
 const NAV_LINKS = [
   { href: '#services', label: 'Services' },
   { href: '#portfolio', label: 'Before & After' },
+  { href: '#gallery', label: 'Gallery' },
   { href: '#social-showcase', label: 'Reels' },
   { href: '#reviews', label: 'Reviews' },
   { href: '#contact', label: 'Contact' },
@@ -27,6 +28,7 @@ export default function Nav({
   businessName,
 }: NavProps) {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -40,9 +42,24 @@ export default function Nav({
         <a href="#hero" className={styles.brand}>
           <img src={logoSrc} alt={`${businessName} logo`} className={styles.logo} />
         </a>
-        <nav className={styles.links}>
+        <button
+          type="button"
+          className={`${styles.menuToggle} ${menuOpen ? styles.menuToggleOpen : ''}`}
+          aria-expanded={menuOpen}
+          aria-controls="primary-navigation"
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+        <nav
+          id="primary-navigation"
+          className={`${styles.links} ${menuOpen ? styles.linksOpen : ''}`}
+        >
           {NAV_LINKS.map((link) => (
-            <a key={link.href} href={link.href}>
+            <a key={link.href} href={link.href} onClick={() => setMenuOpen(false)}>
               {link.label}
             </a>
           ))}

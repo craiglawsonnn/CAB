@@ -1,6 +1,7 @@
 import Nav from '@/components/Nav';
 import Hero from '@/components/Hero';
 import BeforeAfterSection from '@/components/BeforeAfterSection';
+import GallerySection from '@/components/GallerySection';
 import ReelsSection from '@/components/ReelsSection';
 import ReviewsCard from '@/components/ReviewsCard';
 import PricingSection from '@/components/PricingSection';
@@ -26,19 +27,14 @@ export default function Home() {
           instagramDmUrl={siteConfig.instagramDmUrl}
         />
         <BeforeAfterSection pairs={siteConfig.beforeAfterPairs} />
+        <GallerySection images={siteConfig.gallery} />
         <ReelsSection reels={siteConfig.reels} />
         <ReviewsCard
           rating={siteConfig.googleReview.rating}
           reviewCount={siteConfig.googleReview.reviewCount}
           profileUrl={siteConfig.googleReview.profileUrl}
         />
-        <PricingSection
-          items={siteConfig.pricing}
-          addonsImageSrc={siteConfig.pricingImages.addons}
-          pricesImageSrc={siteConfig.pricingImages.prices}
-          headlightImageSrc={siteConfig.pricingImages.headlight}
-          detailsImageSrc={siteConfig.pricingImages.details}
-        />
+        <PricingSection packages={siteConfig.packages} items={siteConfig.pricing} />
         <ContactSection
           instagramDmUrl={siteConfig.instagramDmUrl}
           phoneDisplay={siteConfig.phoneDisplay}

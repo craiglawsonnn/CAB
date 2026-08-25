@@ -16,6 +16,25 @@ export interface PricingItem {
   price: string;
 }
 
+export interface PricingPackage {
+  id: string;
+  name: string;
+  tagline: string;
+  includesNote?: string;
+  features: string[];
+  duration: string;
+  price: string;
+  priceNote: string;
+  highlight?: boolean;
+}
+
+export interface GalleryImage {
+  id: string;
+  src: string;
+  alt: string;
+  caption: string;
+}
+
 export interface ReelItem {
   id: string;
   caption: string;
@@ -38,28 +57,22 @@ export interface SiteConfig {
   googleReview: GoogleReviewConfig;
   beforeAfterPairs: BeforeAfterPair[];
   reels: ReelItem[];
+  packages: PricingPackage[];
   pricing: PricingItem[];
-  pricingImages: {
-    addons: string;
-    prices: string;
-    headlight: string;
-    details: string;
-  };
+  gallery: GalleryImage[];
 }
 
 export const siteConfig: SiteConfig = {
   businessName: 'CAB Premium Detailing',
   phoneDisplay: '(406) 609-5321',
   phoneHref: 'tel:+14066095321',
-  // Pending until the real Instagram handle is supplied.
-  instagramDmUrl: null,
+  instagramDmUrl: 'https://ig.me/m/cab.premiumdetailing',
   logoSrc: `${basePath}/images/logo.jpg`,
   heroImageSrc: `${basePath}/images/hero.jpg`,
   googleReview: {
     rating: 4.9,
     reviewCount: 50,
-    // Placeholder until the real Google Business Profile URL is supplied.
-    profileUrl: null,
+    profileUrl: 'https://maps.app.goo.gl/HFcJiYVWfW2wRLeA9?g_st=ii',
   },
   beforeAfterPairs: [
     {
@@ -112,9 +125,64 @@ export const siteConfig: SiteConfig = {
     },
   ],
   reels: [
-    { id: 'reel-1', caption: 'Aircraft Exterior Ceramic Wash', embedUrl: null },
-    { id: 'reel-2', caption: 'Yacht Teak & Hull Polish', embedUrl: null },
-    { id: 'reel-3', caption: 'Full Supercar Paint Correction', embedUrl: null },
+    {
+      id: 'reel-1',
+      caption: 'Before & After: See the Transformation',
+      embedUrl: 'https://www.instagram.com/reel/DcG2WtAR9fc/',
+    },
+    {
+      id: 'reel-2',
+      caption: 'Full Detail Walkthrough',
+      embedUrl: 'https://www.instagram.com/reel/DcSK2VWRgKT/',
+    },
+    {
+      id: 'reel-3',
+      caption: 'Meet CAB Premium Detailing',
+      embedUrl: 'https://www.instagram.com/reel/DcCID9YJ5pC/',
+    },
+  ],
+  packages: [
+    {
+      id: 'refresh',
+      name: 'Refresh Detail',
+      tagline: 'For regular maintenance & a fresh look',
+      features: [
+        'Exterior hand wash',
+        'Wheels & tires washed',
+        'Door jambs cleaned',
+        'Windows cleaned, in & out',
+        'Full interior vacuum',
+        'Floor mats vacuumed',
+        'Interior wipe-down',
+        'Cup holders & console detail',
+        'Spray wax finish',
+      ],
+      duration: '~2 hrs with 2 techs · ~4 hrs solo',
+      price: 'From $200',
+      priceNote: 'Final pricing based on vehicle size',
+    },
+    {
+      id: 'full',
+      name: 'Full Detail',
+      tagline: 'For a deep interior & exterior reset',
+      includesNote: 'Everything in Refresh Detail, plus:',
+      features: [
+        'Tire dressing',
+        'Exterior plastic dressing',
+        'Compressed air blow-out',
+        'Deep carpet cleaning',
+        'Floor mats shampooed',
+        'Deep interior cleaning',
+        'Stain removal — seats & carpet',
+        'Full seat cleaning / shampoo',
+        'Seat conditioning',
+        'Headliner cleaned, if needed',
+      ],
+      duration: '~3 hrs with 2 techs · ~6 hrs solo',
+      price: 'From $300',
+      priceNote: 'Final pricing based on vehicle size & condition',
+      highlight: true,
+    },
   ],
   pricing: [
     { id: 'headlight', name: 'Headlight Restoration', price: '$80–$120' },
@@ -127,10 +195,12 @@ export const siteConfig: SiteConfig = {
     },
     { id: 'odor', name: 'Odor Elimination', detail: 'Ozone Treatment', price: '$50' },
   ],
-  pricingImages: {
-    addons: `${basePath}/images/addons.jpg`,
-    prices: `${basePath}/images/prices.jpg`,
-    headlight: `${basePath}/images/headlight-restore.jpg`,
-    details: `${basePath}/images/details.jpg`,
-  },
+  gallery: [
+    {
+      id: 'headlight-restore',
+      src: `${basePath}/images/headlight-restore.jpg`,
+      alt: 'Headlight restoration before and after',
+      caption: 'Headlight Restoration',
+    },
+  ],
 };

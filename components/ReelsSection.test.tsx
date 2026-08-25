@@ -4,9 +4,13 @@ import ReelsSection from '@/components/ReelsSection';
 import { siteConfig } from '@/content/site';
 
 describe('ReelsSection', () => {
-  it('renders one frame per reel', () => {
+  it('renders one embedded blockquote per reel, linked to its real Instagram url', () => {
     render(<ReelsSection reels={siteConfig.reels} />);
-    expect(screen.getAllByText('Coming soon')).toHaveLength(siteConfig.reels.length);
+    for (const reel of siteConfig.reels) {
+      expect(
+        document.querySelector(`blockquote[data-instgrm-permalink="${reel.embedUrl}"]`)
+      ).not.toBeNull();
+    }
   });
 
   it('sets the section id to social-showcase', () => {

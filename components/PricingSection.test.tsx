@@ -4,11 +4,8 @@ import PricingSection from '@/components/PricingSection';
 import { siteConfig } from '@/content/site';
 
 const props = {
+  packages: siteConfig.packages,
   items: siteConfig.pricing,
-  addonsImageSrc: siteConfig.pricingImages.addons,
-  pricesImageSrc: siteConfig.pricingImages.prices,
-  headlightImageSrc: siteConfig.pricingImages.headlight,
-  detailsImageSrc: siteConfig.pricingImages.details,
 };
 
 describe('PricingSection', () => {
@@ -20,24 +17,15 @@ describe('PricingSection', () => {
     }
   });
 
-  it('renders the four supporting images', () => {
+  it('renders every package name, price, and features as text', () => {
     render(<PricingSection {...props} />);
-    expect(screen.getByRole('img', { name: /add-on services/i })).toHaveAttribute(
-      'src',
-      props.addonsImageSrc
-    );
-    expect(screen.getByRole('img', { name: /pricing reference/i })).toHaveAttribute(
-      'src',
-      props.pricesImageSrc
-    );
-    expect(screen.getByRole('img', { name: /headlight restoration/i })).toHaveAttribute(
-      'src',
-      props.headlightImageSrc
-    );
-    expect(screen.getByRole('img', { name: /detailing close-up/i })).toHaveAttribute(
-      'src',
-      props.detailsImageSrc
-    );
+    for (const pkg of props.packages) {
+      expect(screen.getByRole('heading', { name: pkg.name })).toBeInTheDocument();
+      expect(screen.getByText(pkg.price)).toBeInTheDocument();
+      for (const feature of pkg.features) {
+        expect(screen.getByText(feature)).toBeInTheDocument();
+      }
+    }
   });
 
   it('sets the section id to services', () => {

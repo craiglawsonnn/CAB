@@ -8,6 +8,7 @@ describe('Home page composition', () => {
     render(<Home />);
     expect(document.getElementById('hero')).not.toBeNull();
     expect(document.getElementById('portfolio')).not.toBeNull();
+    expect(document.getElementById('gallery')).not.toBeNull();
     expect(document.getElementById('social-showcase')).not.toBeNull();
     expect(document.getElementById('reviews')).not.toBeNull();
     expect(document.getElementById('services')).not.toBeNull();

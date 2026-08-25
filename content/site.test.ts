@@ -28,11 +28,18 @@ describe('siteConfig', () => {
     expect(siteConfig.pricing).toHaveLength(4);
   });
 
-  it('references pricing support images that exist on disk', () => {
-    assertImageExists(siteConfig.pricingImages.addons);
-    assertImageExists(siteConfig.pricingImages.prices);
-    assertImageExists(siteConfig.pricingImages.headlight);
-    assertImageExists(siteConfig.pricingImages.details);
+  it('has exactly two packages, each with at least one feature', () => {
+    expect(siteConfig.packages).toHaveLength(2);
+    for (const pkg of siteConfig.packages) {
+      expect(pkg.features.length).toBeGreaterThan(0);
+    }
+  });
+
+  it('references gallery images that exist on disk', () => {
+    expect(siteConfig.gallery.length).toBeGreaterThan(0);
+    for (const image of siteConfig.gallery) {
+      assertImageExists(image.src);
+    }
   });
 
   it('references a logo and hero image that exist on disk', () => {
@@ -40,17 +47,19 @@ describe('siteConfig', () => {
     assertImageExists(siteConfig.heroImageSrc);
   });
 
-  it('does not fabricate a Google review profile url', () => {
-    expect(siteConfig.googleReview.profileUrl).toBeNull();
+  it('uses the confirmed Google Business Profile url', () => {
+    expect(siteConfig.googleReview.profileUrl).toBe(
+      'https://maps.app.goo.gl/HFcJiYVWfW2wRLeA9?g_st=ii'
+    );
   });
 
-  it('does not fabricate reel embed urls', () => {
+  it('has a real Instagram reel url for every reel', () => {
     for (const reel of siteConfig.reels) {
-      expect(reel.embedUrl).toBeNull();
+      expect(reel.embedUrl).toMatch(/^https:\/\/www\.instagram\.com\/reel\//);
     }
   });
 
-  it('does not fabricate an Instagram DM url', () => {
-    expect(siteConfig.instagramDmUrl).toBeNull();
+  it('uses the confirmed Instagram DM url', () => {
+    expect(siteConfig.instagramDmUrl).toBe('https://ig.me/m/cab.premiumdetailing');
   });
 });
