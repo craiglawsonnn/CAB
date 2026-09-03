@@ -43,7 +43,11 @@ export default function Home() {
           viewMoreTemplate={siteConfig.beforeAfter.viewMoreTemplate}
           showFewerLabel={siteConfig.beforeAfter.showFewerLabel}
         />
-        <GallerySection images={siteConfig.gallery.images} />
+        <GallerySection
+          images={siteConfig.gallery.images}
+          heading={siteConfig.gallery.heading}
+          subtitle={siteConfig.gallery.subtitle}
+        />
         <ReelsSection reels={siteConfig.reels.items} />
         <ReviewsCard
           rating={siteConfig.googleReview.rating}
