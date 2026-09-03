@@ -1,4 +1,3 @@
-import { basePath } from '@/lib/basePath';
 import raw from './site.json';
 
 export interface NavLink {
@@ -175,24 +174,4 @@ export interface SiteConfig {
   footer: FooterConfig;
 }
 
-function withBasePath(src: string): string {
-  return `${basePath}${src}`;
-}
-
-export const siteConfig: SiteConfig = {
-  ...raw,
-  logoSrc: withBasePath(raw.logoSrc),
-  heroImageSrc: withBasePath(raw.heroImageSrc),
-  beforeAfter: {
-    ...raw.beforeAfter,
-    pairs: raw.beforeAfter.pairs.map((pair) => ({
-      ...pair,
-      beforeSrc: withBasePath(pair.beforeSrc),
-      afterSrc: withBasePath(pair.afterSrc),
-    })),
-  },
-  gallery: {
-    ...raw.gallery,
-    images: raw.gallery.images.map((image) => ({ ...image, src: withBasePath(image.src) })),
-  },
-};
+export const siteConfig: SiteConfig = raw;
