@@ -15,9 +15,16 @@ afterEach(() => {
   delete (window as WindowWithInstgrm).instgrm;
 });
 
+const comingSoonLabel = 'Coming soon';
+
 describe('ReelEmbed', () => {
   it('renders a coming-soon placeholder when embedUrl is null', () => {
-    render(<ReelEmbed reel={{ id: 'r1', caption: 'Aircraft wash', embedUrl: null }} />);
+    render(
+      <ReelEmbed
+        reel={{ id: 'r1', caption: 'Aircraft wash', embedUrl: null }}
+        comingSoonLabel={comingSoonLabel}
+      />
+    );
     expect(screen.getByText('Coming soon')).toBeInTheDocument();
     expect(screen.getByText('Aircraft wash')).toBeInTheDocument();
   });
@@ -30,6 +37,7 @@ describe('ReelEmbed', () => {
           caption: 'Yacht polish',
           embedUrl: 'https://www.instagram.com/reel/xyz/',
         }}
+        comingSoonLabel={comingSoonLabel}
       />
     );
     const blockquote = document.querySelector('blockquote.instagram-media');
@@ -48,6 +56,7 @@ describe('ReelEmbed', () => {
           caption: 'Paint correction',
           embedUrl: 'https://www.tiktok.com/@cab/video/123',
         }}
+        comingSoonLabel={comingSoonLabel}
       />
     );
     const blockquote = document.querySelector('blockquote.tiktok-embed');
@@ -71,6 +80,7 @@ describe('ReelEmbed shared-script race condition', () => {
     render(
       <ReelEmbed
         reel={{ id: 'r4', caption: 'Second instagram reel', embedUrl: 'https://www.instagram.com/reel/second/' }}
+        comingSoonLabel={comingSoonLabel}
       />
     );
 
@@ -98,6 +108,7 @@ describe('ReelEmbed shared-script race condition', () => {
     render(
       <ReelEmbed
         reel={{ id: 'r5', caption: 'Third instagram reel', embedUrl: 'https://www.instagram.com/reel/third/' }}
+        comingSoonLabel={comingSoonLabel}
       />
     );
 

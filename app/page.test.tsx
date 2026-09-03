@@ -17,14 +17,29 @@ describe('Home page composition', () => {
 
   it('renders one slider per configured before/after pair', () => {
     render(<Home />);
-    expect(screen.getAllByRole('slider')).toHaveLength(siteConfig.beforeAfterPairs.length);
+    expect(screen.getAllByRole('slider')).toHaveLength(siteConfig.beforeAfter.pairs.length);
   });
 
   it('renders the Call Now nav link with the configured tel href', () => {
     render(<Home />);
-    expect(screen.getByRole('link', { name: 'Call Now' })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: siteConfig.nav.callButtonLabel })).toHaveAttribute(
       'href',
       siteConfig.phoneHref
     );
+  });
+
+  it('renders every section heading from its correct configured field', () => {
+    render(<Home />);
+    const headings = [
+      siteConfig.beforeAfter.heading,
+      siteConfig.gallery.heading,
+      siteConfig.reels.heading,
+      siteConfig.pricing.heading,
+      siteConfig.contact.heading,
+      siteConfig.googleReview.heading,
+    ];
+    for (const heading of headings) {
+      expect(screen.getByRole('heading', { name: heading })).toBeInTheDocument();
+    }
   });
 });

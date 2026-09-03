@@ -7,6 +7,7 @@ import styles from './ReelEmbed.module.css';
 
 export interface ReelEmbedProps {
   reel: ReelItem;
+  comingSoonLabel: string;
 }
 
 const EMBED_SCRIPTS: Record<'instagram' | 'tiktok', string> = {
@@ -27,7 +28,7 @@ function processEmbeds(platform: 'instagram' | 'tiktok') {
   }
 }
 
-export default function ReelEmbed({ reel }: ReelEmbedProps) {
+export default function ReelEmbed({ reel, comingSoonLabel }: ReelEmbedProps) {
   const platform = reel.embedUrl ? detectPlatform(reel.embedUrl) : null;
 
   useEffect(() => {
@@ -71,7 +72,7 @@ export default function ReelEmbed({ reel }: ReelEmbedProps) {
       <div className={styles.placeholder}>
         <span className={styles.playIcon}>▶</span>
         <p>{reel.caption}</p>
-        <span className={styles.comingSoon}>Coming soon</span>
+        <span className={styles.comingSoon}>{comingSoonLabel}</span>
       </div>
     );
   }

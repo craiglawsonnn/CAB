@@ -16,8 +16,12 @@ export default function Home() {
         phoneDisplay={siteConfig.phoneDisplay}
         phoneHref={siteConfig.phoneHref}
         instagramDmUrl={siteConfig.instagramDmUrl}
+        instagramPendingLabel={siteConfig.instagramPendingLabel}
         logoSrc={siteConfig.logoSrc}
         businessName={siteConfig.businessName}
+        links={siteConfig.nav.links}
+        callButtonLabel={siteConfig.nav.callButtonLabel}
+        instagramButtonLabel={siteConfig.nav.instagramButtonLabel}
       />
       <main>
         <Hero
@@ -25,25 +29,68 @@ export default function Home() {
           phoneDisplay={siteConfig.phoneDisplay}
           phoneHref={siteConfig.phoneHref}
           instagramDmUrl={siteConfig.instagramDmUrl}
+          instagramPendingLabel={siteConfig.instagramPendingLabel}
+          badge={siteConfig.hero.badge}
+          headline={siteConfig.hero.headline}
+          subtitle={siteConfig.hero.subtitle}
+          instagramButtonLabel={siteConfig.hero.instagramButtonLabel}
+          callButtonPrefix={siteConfig.hero.callButtonPrefix}
         />
-        <BeforeAfterSection pairs={siteConfig.beforeAfterPairs} />
-        <GallerySection images={siteConfig.gallery} />
-        <ReelsSection reels={siteConfig.reels} />
+        <BeforeAfterSection
+          pairs={siteConfig.beforeAfter.pairs}
+          heading={siteConfig.beforeAfter.heading}
+          subtitle={siteConfig.beforeAfter.subtitle}
+          viewMoreTemplate={siteConfig.beforeAfter.viewMoreTemplate}
+          showFewerLabel={siteConfig.beforeAfter.showFewerLabel}
+          beforeTagLabel={siteConfig.beforeAfter.beforeTagLabel}
+          afterTagLabel={siteConfig.beforeAfter.afterTagLabel}
+          ariaLabelPrefix={siteConfig.beforeAfter.ariaLabelPrefix}
+        />
+        <GallerySection
+          images={siteConfig.gallery.images}
+          heading={siteConfig.gallery.heading}
+          subtitle={siteConfig.gallery.subtitle}
+        />
+        <ReelsSection
+          reels={siteConfig.reels.items}
+          heading={siteConfig.reels.heading}
+          subtitle={siteConfig.reels.subtitle}
+          comingSoonLabel={siteConfig.reels.comingSoonLabel}
+        />
         <ReviewsCard
           rating={siteConfig.googleReview.rating}
           reviewCount={siteConfig.googleReview.reviewCount}
           profileUrl={siteConfig.googleReview.profileUrl}
+          heading={siteConfig.googleReview.heading}
+          countTemplate={siteConfig.googleReview.countTemplate}
+          viewButtonLabel={siteConfig.googleReview.viewButtonLabel}
+          pendingLabel={siteConfig.googleReview.pendingLabel}
         />
         <PricingSection
-          packages={siteConfig.packages}
-          standaloneOptions={siteConfig.standaloneOptions}
-          quoteServices={siteConfig.quoteServices}
-          items={siteConfig.pricing}
+          packages={siteConfig.pricing.packages}
+          standaloneOptions={siteConfig.pricing.standaloneOptions}
+          quoteServices={siteConfig.pricing.quoteServices}
+          items={siteConfig.pricing.addons}
+          heading={siteConfig.pricing.heading}
+          subtitle={siteConfig.pricing.subtitle}
+          standaloneHeading={siteConfig.pricing.standaloneHeading}
+          standaloneSubtitle={siteConfig.pricing.standaloneSubtitle}
+          standaloneCaveat={siteConfig.pricing.standaloneCaveat}
+          quoteHeading={siteConfig.pricing.quoteHeading}
+          quoteSubtitle={siteConfig.pricing.quoteSubtitle}
+          quoteFactorsLabel={siteConfig.pricing.quoteFactorsLabel}
+          addonsHeading={siteConfig.pricing.addonsHeading}
+          addonsSubtitle={siteConfig.pricing.addonsSubtitle}
         />
         <ContactSection
           instagramDmUrl={siteConfig.instagramDmUrl}
           phoneDisplay={siteConfig.phoneDisplay}
           phoneHref={siteConfig.phoneHref}
+          instagramPendingLabel={siteConfig.instagramPendingLabel}
+          heading={siteConfig.contact.heading}
+          body={siteConfig.contact.body}
+          instagramButtonLabel={siteConfig.contact.instagramButtonLabel}
+          callButtonPrefix={siteConfig.contact.callButtonPrefix}
         />
       </main>
       <Footer
@@ -51,6 +98,10 @@ export default function Home() {
         businessName={siteConfig.businessName}
         instagramDmUrl={siteConfig.instagramDmUrl}
         googleProfileUrl={siteConfig.googleReview.profileUrl}
+        instagramPendingLabel={siteConfig.instagramPendingLabel}
+        copyrightSuffix={siteConfig.footer.copyrightSuffix}
+        instagramLabel={siteConfig.footer.instagramLabel}
+        googleLabel={siteConfig.footer.googleLabel}
       />
     </>
   );

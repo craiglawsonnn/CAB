@@ -4,30 +4,41 @@ export interface ContactSectionProps {
   instagramDmUrl: string | null;
   phoneDisplay: string;
   phoneHref: string;
+  instagramPendingLabel: string;
+  heading: string;
+  body: string;
+  instagramButtonLabel: string;
+  callButtonPrefix: string;
 }
 
 export default function ContactSection({
   instagramDmUrl,
   phoneDisplay,
   phoneHref,
+  instagramPendingLabel,
+  heading,
+  body,
+  instagramButtonLabel,
+  callButtonPrefix,
 }: ContactSectionProps) {
   return (
     <section id="contact" className={styles.section}>
       <div className={styles.inner}>
-        <h2>Ready to Book Your Detail?</h2>
-        <p>DM us on Instagram or call/text to discuss pricing and schedule your appointment.</p>
+        <h2>{heading}</h2>
+        <p>{body}</p>
         <div className={styles.actions}>
           {instagramDmUrl ? (
             <a href={instagramDmUrl} className={styles.btnInstagram}>
-              DM Us on Instagram
+              {instagramButtonLabel}
             </a>
           ) : (
             <span className={`${styles.btnInstagram} ${styles.btnDisabled}`} aria-disabled="true">
-              Instagram DM — coming soon
+              {instagramPendingLabel}
             </span>
           )}
           <a href={phoneHref} className={styles.btnPhone}>
-            Call / Text {phoneDisplay}
+            {callButtonPrefix}
+            {phoneDisplay}
           </a>
         </div>
       </div>
