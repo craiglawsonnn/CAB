@@ -82,6 +82,11 @@ export default function Home() {
           instagramDmUrl={siteConfig.instagramDmUrl}
           phoneDisplay={siteConfig.phoneDisplay}
           phoneHref={siteConfig.phoneHref}
+          instagramPendingLabel={siteConfig.instagramPendingLabel}
+          heading={siteConfig.contact.heading}
+          body={siteConfig.contact.body}
+          instagramButtonLabel={siteConfig.contact.instagramButtonLabel}
+          callButtonPrefix={siteConfig.contact.callButtonPrefix}
         />
       </main>
       <Footer
