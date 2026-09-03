@@ -384,6 +384,7 @@ Expected: FAIL — `siteConfig.beforeAfter` (and the other new paths) are `undef
     "standaloneCaveat": "Pricing may vary depending on vehicle size and condition.",
     "quoteHeading": "Correction & Protection Services",
     "quoteSubtitle": "Contact us for a personalized quote",
+    "quoteFactorsLabel": "Pricing varies depending on:",
     "quoteServices": [
       {
         "id": "polishing",
@@ -575,6 +576,7 @@ export interface PricingConfig {
   standaloneCaveat: string;
   quoteHeading: string;
   quoteSubtitle: string;
+  quoteFactorsLabel: string;
   quoteServices: QuoteService[];
   addonsHeading: string;
   addonsSubtitle: string;
@@ -1705,8 +1707,8 @@ git commit -m "feat: make ReviewsCard copy config-driven"
 - Modify: `app/page.tsx`
 
 **Interfaces:**
-- Consumes: `siteConfig.pricing.heading`, `.subtitle`, `.standaloneHeading`, `.standaloneSubtitle`, `.standaloneCaveat`, `.quoteHeading`, `.quoteSubtitle`, `.addonsHeading`, `.addonsSubtitle` (all `string`).
-- Produces: `PricingSectionProps` gains `heading`, `subtitle`, `standaloneHeading`, `standaloneSubtitle`, `standaloneCaveat`, `quoteHeading`, `quoteSubtitle`, `addonsHeading`, `addonsSubtitle` (all `string`).
+- Consumes: `siteConfig.pricing.heading`, `.subtitle`, `.standaloneHeading`, `.standaloneSubtitle`, `.standaloneCaveat`, `.quoteHeading`, `.quoteSubtitle`, `.quoteFactorsLabel`, `.addonsHeading`, `.addonsSubtitle` (all `string`).
+- Produces: `PricingSectionProps` gains `heading`, `subtitle`, `standaloneHeading`, `standaloneSubtitle`, `standaloneCaveat`, `quoteHeading`, `quoteSubtitle`, `quoteFactorsLabel`, `addonsHeading`, `addonsSubtitle` (all `string`).
 
 - [ ] **Step 1: Update the failing test**
 
@@ -1730,6 +1732,7 @@ const props = {
   standaloneCaveat: siteConfig.pricing.standaloneCaveat,
   quoteHeading: siteConfig.pricing.quoteHeading,
   quoteSubtitle: siteConfig.pricing.quoteSubtitle,
+  quoteFactorsLabel: siteConfig.pricing.quoteFactorsLabel,
   addonsHeading: siteConfig.pricing.addonsHeading,
   addonsSubtitle: siteConfig.pricing.addonsSubtitle,
 };
@@ -1797,6 +1800,7 @@ describe('PricingSection', () => {
     expect(screen.getByText(props.standaloneSubtitle)).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: props.quoteHeading })).toBeInTheDocument();
     expect(screen.getByText(props.quoteSubtitle)).toBeInTheDocument();
+    expect(screen.getByText(props.quoteFactorsLabel)).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: props.addonsHeading })).toBeInTheDocument();
     expect(screen.getByText(props.addonsSubtitle)).toBeInTheDocument();
   });
@@ -1831,6 +1835,7 @@ export interface PricingSectionProps {
   standaloneCaveat: string;
   quoteHeading: string;
   quoteSubtitle: string;
+  quoteFactorsLabel: string;
   addonsHeading: string;
   addonsSubtitle: string;
 }
@@ -1847,6 +1852,7 @@ export default function PricingSection({
   standaloneCaveat,
   quoteHeading,
   quoteSubtitle,
+  quoteFactorsLabel,
   addonsHeading,
   addonsSubtitle,
 }: PricingSectionProps) {
@@ -1909,7 +1915,7 @@ export default function PricingSection({
               <h3>{service.name}</h3>
               <strong className={styles.packagePrice}>{service.startingPrice}</strong>
               <p className={styles.description}>{service.description}</p>
-              <p className={styles.checklistNote}>Pricing varies depending on:</p>
+              <p className={styles.checklistNote}>{quoteFactorsLabel}</p>
               <ul className={styles.featureList}>
                 {service.factors.map((factor) => (
                   <li key={factor}>{factor}</li>
@@ -1942,7 +1948,7 @@ export default function PricingSection({
 }
 ```
 
-Note: "Pricing varies depending on:" stays hardcoded here — it's a fixed structural label describing the list format immediately below it, not independent content; changing it without changing the list structure wouldn't make sense. Everything else visible is now config-driven.
+Every visible string in this component is now config-driven, including the "Pricing varies depending on:" label (`quoteFactorsLabel`).
 
 - [ ] **Step 4: Wire the new props in `app/page.tsx`**
 
@@ -1959,6 +1965,7 @@ Note: "Pricing varies depending on:" stays hardcoded here — it's a fixed struc
   standaloneCaveat={siteConfig.pricing.standaloneCaveat}
   quoteHeading={siteConfig.pricing.quoteHeading}
   quoteSubtitle={siteConfig.pricing.quoteSubtitle}
+  quoteFactorsLabel={siteConfig.pricing.quoteFactorsLabel}
   addonsHeading={siteConfig.pricing.addonsHeading}
   addonsSubtitle={siteConfig.pricing.addonsSubtitle}
 />
