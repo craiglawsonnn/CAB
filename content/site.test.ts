@@ -24,14 +24,35 @@ describe('siteConfig', () => {
     }
   });
 
-  it('has exactly four pricing items', () => {
+  it('has exactly four add-on pricing items', () => {
     expect(siteConfig.pricing).toHaveLength(4);
   });
 
-  it('has exactly two packages, each with at least one feature', () => {
+  it('has exactly two packages, each with at least one checklist of at least one item', () => {
     expect(siteConfig.packages).toHaveLength(2);
     for (const pkg of siteConfig.packages) {
-      expect(pkg.features.length).toBeGreaterThan(0);
+      expect(pkg.checklists.length).toBeGreaterThan(0);
+      for (const checklist of pkg.checklists) {
+        expect(checklist.items.length).toBeGreaterThan(0);
+      }
+    }
+  });
+
+  it('corrects the pre-wash step to plain "Pre-wash" (not "Two-step pre-wash")', () => {
+    const refresh = siteConfig.packages.find((pkg) => pkg.id === 'refresh');
+    const exterior = refresh?.checklists.find((c) => c.heading.startsWith('EXTERIOR'));
+    expect(exterior?.items).toContain('Pre-wash');
+    expect(exterior?.items).not.toContain('Two-step pre-wash');
+  });
+
+  it('has exactly four standalone options', () => {
+    expect(siteConfig.standaloneOptions).toHaveLength(4);
+  });
+
+  it('has exactly two quote-based services, each with at least one pricing factor', () => {
+    expect(siteConfig.quoteServices).toHaveLength(2);
+    for (const service of siteConfig.quoteServices) {
+      expect(service.factors.length).toBeGreaterThan(0);
     }
   });
 

@@ -34,7 +34,12 @@ export default function Home() {
           reviewCount={siteConfig.googleReview.reviewCount}
           profileUrl={siteConfig.googleReview.profileUrl}
         />
-        <PricingSection packages={siteConfig.packages} items={siteConfig.pricing} />
+        <PricingSection
+          packages={siteConfig.packages}
+          standaloneOptions={siteConfig.standaloneOptions}
+          quoteServices={siteConfig.quoteServices}
+          items={siteConfig.pricing}
+        />
         <ContactSection
           instagramDmUrl={siteConfig.instagramDmUrl}
           phoneDisplay={siteConfig.phoneDisplay}

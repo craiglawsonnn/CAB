@@ -5,11 +5,13 @@ import { siteConfig } from '@/content/site';
 
 const props = {
   packages: siteConfig.packages,
+  standaloneOptions: siteConfig.standaloneOptions,
+  quoteServices: siteConfig.quoteServices,
   items: siteConfig.pricing,
 };
 
 describe('PricingSection', () => {
-  it('renders every pricing item name and price', () => {
+  it('renders every add-on item name and price', () => {
     render(<PricingSection {...props} />);
     for (const item of props.items) {
       expect(screen.getByText(item.name)).toBeInTheDocument();
@@ -17,13 +19,43 @@ describe('PricingSection', () => {
     }
   });
 
-  it('renders every package name, price, and features as text', () => {
+  it('renders every package name, price, and checklist items as text', () => {
     render(<PricingSection {...props} />);
     for (const pkg of props.packages) {
       expect(screen.getByRole('heading', { name: pkg.name })).toBeInTheDocument();
-      expect(screen.getByText(pkg.price)).toBeInTheDocument();
-      for (const feature of pkg.features) {
-        expect(screen.getByText(feature)).toBeInTheDocument();
+      expect(screen.getAllByText(pkg.price).length).toBeGreaterThan(0);
+      for (const checklist of pkg.checklists) {
+        expect(screen.getByText(checklist.heading)).toBeInTheDocument();
+        for (const item of checklist.items) {
+          expect(screen.getAllByText(item).length).toBeGreaterThan(0);
+        }
+      }
+    }
+  });
+
+  it('renders a booking link for every package that points at #contact', () => {
+    render(<PricingSection {...props} />);
+    for (const pkg of props.packages) {
+      const link = screen.getByRole('link', { name: pkg.ctaLabel });
+      expect(link).toHaveAttribute('href', '#contact');
+    }
+  });
+
+  it('renders every standalone option name and price', () => {
+    render(<PricingSection {...props} />);
+    for (const option of props.standaloneOptions) {
+      expect(screen.getByText(option.name)).toBeInTheDocument();
+      expect(screen.getAllByText(option.price).length).toBeGreaterThan(0);
+    }
+  });
+
+  it('renders every quote service name, starting price, and pricing factors', () => {
+    render(<PricingSection {...props} />);
+    for (const service of props.quoteServices) {
+      expect(screen.getByRole('heading', { name: service.name })).toBeInTheDocument();
+      expect(screen.getByText(service.startingPrice)).toBeInTheDocument();
+      for (const factor of service.factors) {
+        expect(screen.getAllByText(factor).length).toBeGreaterThan(0);
       }
     }
   });
