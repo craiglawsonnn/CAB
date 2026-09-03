@@ -5,6 +5,10 @@ export interface FooterProps {
   businessName: string;
   instagramDmUrl: string | null;
   googleProfileUrl: string | null;
+  instagramPendingLabel: string;
+  copyrightSuffix: string;
+  instagramLabel: string;
+  googleLabel: string;
 }
 
 export default function Footer({
@@ -12,6 +16,10 @@ export default function Footer({
   businessName,
   instagramDmUrl,
   googleProfileUrl,
+  instagramPendingLabel,
+  copyrightSuffix,
+  instagramLabel,
+  googleLabel,
 }: FooterProps) {
   const year = new Date().getFullYear();
   return (
@@ -19,17 +27,17 @@ export default function Footer({
       <div className={styles.inner}>
         <img src={logoSrc} alt={`${businessName} logo`} className={styles.logo} />
         <p>
-          © {year} {businessName}. All rights reserved.
+          © {year} {businessName}. {copyrightSuffix}
         </p>
         <div className={styles.social}>
           {instagramDmUrl ? (
-            <a href={instagramDmUrl}>Instagram</a>
+            <a href={instagramDmUrl}>{instagramLabel}</a>
           ) : (
             <span className={styles.disabled} aria-disabled="true">
-              Instagram DM — coming soon
+              {instagramPendingLabel}
             </span>
           )}
-          {googleProfileUrl && <a href={googleProfileUrl}>Google Page</a>}
+          {googleProfileUrl && <a href={googleProfileUrl}>{googleLabel}</a>}
         </div>
       </div>
     </footer>

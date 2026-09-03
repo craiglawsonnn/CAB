@@ -94,6 +94,10 @@ export default function Home() {
         businessName={siteConfig.businessName}
         instagramDmUrl={siteConfig.instagramDmUrl}
         googleProfileUrl={siteConfig.googleReview.profileUrl}
+        instagramPendingLabel={siteConfig.instagramPendingLabel}
+        copyrightSuffix={siteConfig.footer.copyrightSuffix}
+        instagramLabel={siteConfig.footer.instagramLabel}
+        googleLabel={siteConfig.footer.googleLabel}
       />
     </>
   );
