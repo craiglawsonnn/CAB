@@ -29,6 +29,12 @@ export default function Home() {
           phoneDisplay={siteConfig.phoneDisplay}
           phoneHref={siteConfig.phoneHref}
           instagramDmUrl={siteConfig.instagramDmUrl}
+          instagramPendingLabel={siteConfig.instagramPendingLabel}
+          badge={siteConfig.hero.badge}
+          headline={siteConfig.hero.headline}
+          subtitle={siteConfig.hero.subtitle}
+          instagramButtonLabel={siteConfig.hero.instagramButtonLabel}
+          callButtonPrefix={siteConfig.hero.callButtonPrefix}
         />
         <BeforeAfterSection pairs={siteConfig.beforeAfter.pairs} />
         <GallerySection images={siteConfig.gallery.images} />

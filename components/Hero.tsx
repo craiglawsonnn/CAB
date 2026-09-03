@@ -5,6 +5,12 @@ export interface HeroProps {
   phoneDisplay: string;
   phoneHref: string;
   instagramDmUrl: string | null;
+  instagramPendingLabel: string;
+  badge: string;
+  headline: string;
+  subtitle: string;
+  instagramButtonLabel: string;
+  callButtonPrefix: string;
 }
 
 export default function Hero({
@@ -12,6 +18,12 @@ export default function Hero({
   phoneDisplay,
   phoneHref,
   instagramDmUrl,
+  instagramPendingLabel,
+  badge,
+  headline,
+  subtitle,
+  instagramButtonLabel,
+  callButtonPrefix,
 }: HeroProps) {
   return (
     <section id="hero" className={styles.hero}>
@@ -20,26 +32,27 @@ export default function Hero({
       <div className={styles.glow} aria-hidden="true" />
       <div className={styles.content}>
         <span className={`${styles.reveal} ${styles.badge}`} style={{ animationDelay: '0ms' }}>
-          Mobile & Premium Service
+          {badge}
         </span>
         <h1 className={styles.reveal} style={{ animationDelay: '120ms' }}>
-          Premium Detailing for Cars, Airplanes &amp; Boats
+          {headline}
         </h1>
         <p className={`${styles.reveal} ${styles.subtitle}`} style={{ animationDelay: '240ms' }}>
-          Mobile service. Unmatched quality. Restoring high-end vehicles to showroom perfection.
+          {subtitle}
         </p>
         <div className={`${styles.reveal} ${styles.actions}`} style={{ animationDelay: '360ms' }}>
           {instagramDmUrl ? (
             <a href={instagramDmUrl} className={styles.btnPrimary}>
-              Book via Instagram DM
+              {instagramButtonLabel}
             </a>
           ) : (
             <span className={`${styles.btnPrimary} ${styles.btnDisabled}`} aria-disabled="true">
-              Instagram DM — coming soon
+              {instagramPendingLabel}
             </span>
           )}
           <a href={phoneHref} className={styles.btnSecondary}>
-            Call / Text {phoneDisplay}
+            {callButtonPrefix}
+            {phoneDisplay}
           </a>
         </div>
       </div>
