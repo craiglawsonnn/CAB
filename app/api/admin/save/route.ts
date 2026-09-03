@@ -2,9 +2,11 @@ import { NextResponse } from 'next/server';
 import { processImage } from '@/lib/processImage';
 import { publishFiles, type FileChange } from '@/lib/github';
 
-const MAX_IMAGE_BYTES = 8 * 1024 * 1024;
+const MAX_IMAGE_BYTES = 3 * 1024 * 1024;
+const MAX_TOTAL_IMAGE_BYTES = 3 * 1024 * 1024;
 const MAX_IMAGES_PER_SAVE = 30;
 const IMAGE_MAX_WIDTH = 2000;
+const IMAGE_PATH_PATTERN = /^public\/images\/[A-Za-z0-9._-]+$/;
 
 const REQUIRED_CONTENT_KEYS = [
   'seo', 'businessName', 'phoneDisplay', 'phoneHref', 'instagramDmUrl',
@@ -35,15 +37,18 @@ function validateBody(body: unknown): ValidatedBody | null {
   if (!Array.isArray(images)) return null;
   if (images.length > MAX_IMAGES_PER_SAVE) return null;
 
+  let totalImageBytes = 0;
   for (const image of images) {
-    if (typeof image?.path !== 'string' || !image.path.startsWith('public/images/')) return null;
+    if (typeof image?.path !== 'string' || !IMAGE_PATH_PATTERN.test(image.path)) return null;
     if (image.action !== 'upsert' && image.action !== 'delete') return null;
     if (image.action === 'upsert') {
       if (typeof image.base64 !== 'string') return null;
       const byteLength = Buffer.byteLength(image.base64, 'base64');
       if (byteLength === 0 || byteLength > MAX_IMAGE_BYTES) return null;
+      totalImageBytes += byteLength;
     }
   }
+  if (totalImageBytes > MAX_TOTAL_IMAGE_BYTES) return null;
 
   return { content: content as Record<string, unknown>, images: images as SaveImage[] };
 }

@@ -61,6 +61,36 @@ describe('POST /api/admin/save', () => {
     expect(mockPublishFiles).not.toHaveBeenCalled();
   });
 
+  it('rejects images that are individually within the per-image limit but exceed the cumulative total', async () => {
+    // Each image is ~2MB decoded (under the 3MB per-image cap), but two of them
+    // together exceed the 3MB cumulative cap.
+    const twoMb = Buffer.alloc(2 * 1024 * 1024).toString('base64');
+    const response = await POST(
+      makeRequest({
+        content: VALID_CONTENT,
+        images: [
+          { path: 'public/images/one.jpg', action: 'upsert', base64: twoMb },
+          { path: 'public/images/two.jpg', action: 'upsert', base64: twoMb },
+        ],
+      })
+    );
+    expect(response.status).toBe(400);
+    expect(mockPublishFiles).not.toHaveBeenCalled();
+  });
+
+  it('rejects an image path containing path traversal segments', async () => {
+    const response = await POST(
+      makeRequest({
+        content: VALID_CONTENT,
+        images: [
+          { path: 'public/images/../../../next.config.js', action: 'upsert', base64: 'ZGF0YQ==' },
+        ],
+      })
+    );
+    expect(response.status).toBe(400);
+    expect(mockPublishFiles).not.toHaveBeenCalled();
+  });
+
   it('compresses upsert images and publishes content + images in one call', async () => {
     const response = await POST(
       makeRequest({
