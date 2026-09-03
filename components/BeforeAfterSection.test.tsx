@@ -9,6 +9,9 @@ const copyProps = {
   subtitle: siteConfig.beforeAfter.subtitle,
   viewMoreTemplate: siteConfig.beforeAfter.viewMoreTemplate,
   showFewerLabel: siteConfig.beforeAfter.showFewerLabel,
+  beforeTagLabel: siteConfig.beforeAfter.beforeTagLabel,
+  afterTagLabel: siteConfig.beforeAfter.afterTagLabel,
+  ariaLabelPrefix: siteConfig.beforeAfter.ariaLabelPrefix,
 };
 
 describe('BeforeAfterSection', () => {

@@ -6,9 +6,15 @@ export interface ReelsSectionProps {
   reels: ReelItem[];
   heading: string;
   subtitle: string;
+  comingSoonLabel: string;
 }
 
-export default function ReelsSection({ reels, heading, subtitle }: ReelsSectionProps) {
+export default function ReelsSection({
+  reels,
+  heading,
+  subtitle,
+  comingSoonLabel,
+}: ReelsSectionProps) {
   return (
     <section id="social-showcase" className={styles.section}>
       <div className={styles.inner}>
@@ -17,7 +23,7 @@ export default function ReelsSection({ reels, heading, subtitle }: ReelsSectionP
         <div className={styles.grid}>
           {reels.map((reel) => (
             <div key={reel.id} className={styles.frame}>
-              <ReelEmbed reel={reel} />
+              <ReelEmbed reel={reel} comingSoonLabel={comingSoonLabel} />
             </div>
           ))}
         </div>

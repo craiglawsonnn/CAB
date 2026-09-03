@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Fraunces, Karla } from 'next/font/google';
+import { siteConfig } from '@/content/site';
 import './globals.css';
 
 const fraunces = Fraunces({
@@ -15,9 +16,8 @@ const karla = Karla({
 });
 
 export const metadata: Metadata = {
-  title: 'CAB Premium Detailing | Cars, Airplanes & Boats',
-  description:
-    'Mobile premium detailing for cars, airplanes, and boats. Book via Instagram DM or call/text.',
+  title: siteConfig.seo.title,
+  description: siteConfig.seo.description,
 };
 
 export default function RootLayout({

@@ -7,9 +7,17 @@ import styles from './BeforeAfterSlider.module.css';
 
 export interface BeforeAfterSliderProps {
   pair: BeforeAfterPair;
+  beforeTagLabel: string;
+  afterTagLabel: string;
+  ariaLabelPrefix: string;
 }
 
-export default function BeforeAfterSlider({ pair }: BeforeAfterSliderProps) {
+export default function BeforeAfterSlider({
+  pair,
+  beforeTagLabel,
+  afterTagLabel,
+  ariaLabelPrefix,
+}: BeforeAfterSliderProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const draggingRef = useRef(false);
   const [percent, setPercent] = useState(50);
@@ -65,13 +73,13 @@ export default function BeforeAfterSlider({ pair }: BeforeAfterSliderProps) {
           className={styles.imageBefore}
           style={{ clipPath: `inset(0 ${100 - percent}% 0 0)` }}
         />
-        <span className={styles.tagBefore}>Before</span>
-        <span className={styles.tagAfter}>After</span>
+        <span className={styles.tagBefore}>{beforeTagLabel}</span>
+        <span className={styles.tagAfter}>{afterTagLabel}</span>
         <div
           className={styles.handle}
           style={{ left: `${percent}%` }}
           role="slider"
-          aria-label={`Before and after comparison: ${pair.caption}`}
+          aria-label={`${ariaLabelPrefix}${pair.caption}`}
           aria-valuenow={Math.round(percent)}
           aria-valuemin={0}
           aria-valuemax={100}

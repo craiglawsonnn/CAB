@@ -12,22 +12,28 @@ const pair = {
   caption: 'Test caption',
 };
 
+const copyProps = {
+  beforeTagLabel: 'Before',
+  afterTagLabel: 'After',
+  ariaLabelPrefix: 'Before and after comparison: ',
+};
+
 describe('BeforeAfterSlider', () => {
   it('renders the caption and before/after tags', () => {
-    render(<BeforeAfterSlider pair={pair} />);
+    render(<BeforeAfterSlider pair={pair} {...copyProps} />);
     expect(screen.getByText('Test caption')).toBeInTheDocument();
     expect(screen.getByText('Before')).toBeInTheDocument();
     expect(screen.getByText('After')).toBeInTheDocument();
   });
 
   it('starts at the 50% position', () => {
-    render(<BeforeAfterSlider pair={pair} />);
+    render(<BeforeAfterSlider pair={pair} {...copyProps} />);
     expect(screen.getByRole('slider')).toHaveAttribute('aria-valuenow', '50');
   });
 
   it('moves right on ArrowRight and left on ArrowLeft', async () => {
     const user = userEvent.setup();
-    render(<BeforeAfterSlider pair={pair} />);
+    render(<BeforeAfterSlider pair={pair} {...copyProps} />);
     const slider = screen.getByRole('slider');
     slider.focus();
     await user.keyboard('{ArrowRight}');

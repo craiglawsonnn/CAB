@@ -10,6 +10,7 @@ describe('ReelsSection', () => {
         reels={siteConfig.reels.items}
         heading={siteConfig.reels.heading}
         subtitle={siteConfig.reels.subtitle}
+        comingSoonLabel={siteConfig.reels.comingSoonLabel}
       />
     );
     for (const reel of siteConfig.reels.items) {
@@ -25,6 +26,7 @@ describe('ReelsSection', () => {
         reels={siteConfig.reels.items}
         heading={siteConfig.reels.heading}
         subtitle={siteConfig.reels.subtitle}
+        comingSoonLabel={siteConfig.reels.comingSoonLabel}
       />
     );
     expect(screen.getByRole('heading', { name: siteConfig.reels.heading })).toBeInTheDocument();
@@ -37,6 +39,7 @@ describe('ReelsSection', () => {
         reels={siteConfig.reels.items}
         heading={siteConfig.reels.heading}
         subtitle={siteConfig.reels.subtitle}
+        comingSoonLabel={siteConfig.reels.comingSoonLabel}
       />
     );
     expect(document.getElementById('social-showcase')).not.toBeNull();

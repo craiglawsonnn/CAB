@@ -34,6 +34,9 @@ export interface BeforeAfterConfig {
   subtitle: string;
   viewMoreTemplate: string;
   showFewerLabel: string;
+  beforeTagLabel: string;
+  afterTagLabel: string;
+  ariaLabelPrefix: string;
   pairs: BeforeAfterPair[];
 }
 
@@ -59,6 +62,7 @@ export interface ReelItem {
 export interface ReelsConfig {
   heading: string;
   subtitle: string;
+  comingSoonLabel: string;
   items: ReelItem[];
 }
 
@@ -146,7 +150,13 @@ export interface FooterConfig {
   googleLabel: string;
 }
 
+export interface SeoConfig {
+  title: string;
+  description: string;
+}
+
 export interface SiteConfig {
+  seo: SeoConfig;
   businessName: string;
   phoneDisplay: string;
   phoneHref: string;

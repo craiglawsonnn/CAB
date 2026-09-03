@@ -11,6 +11,9 @@ export interface BeforeAfterSectionProps {
   subtitle: string;
   viewMoreTemplate: string;
   showFewerLabel: string;
+  beforeTagLabel: string;
+  afterTagLabel: string;
+  ariaLabelPrefix: string;
 }
 
 const MOBILE_VISIBLE_COUNT = 3;
@@ -21,6 +24,9 @@ export default function BeforeAfterSection({
   subtitle,
   viewMoreTemplate,
   showFewerLabel,
+  beforeTagLabel,
+  afterTagLabel,
+  ariaLabelPrefix,
 }: BeforeAfterSectionProps) {
   const [expanded, setExpanded] = useState(false);
   const hasMore = pairs.length > MOBILE_VISIBLE_COUNT;
@@ -36,7 +42,12 @@ export default function BeforeAfterSection({
               key={pair.id}
               className={index >= MOBILE_VISIBLE_COUNT ? styles.extra : undefined}
             >
-              <BeforeAfterSlider pair={pair} />
+              <BeforeAfterSlider
+                pair={pair}
+                beforeTagLabel={beforeTagLabel}
+                afterTagLabel={afterTagLabel}
+                ariaLabelPrefix={ariaLabelPrefix}
+              />
             </div>
           ))}
         </div>

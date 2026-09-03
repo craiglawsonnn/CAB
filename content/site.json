@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "title": "CAB Premium Detailing | Cars, Airplanes & Boats",
+    "description": "Mobile premium detailing for cars, airplanes, and boats. Book via Instagram DM or call/text."
+  },
   "businessName": "CAB Premium Detailing",
   "phoneDisplay": "(406) 609-5321",
   "phoneHref": "tel:+14066095321",
@@ -30,6 +34,9 @@
     "subtitle": "Drag the divider to see the transformation",
     "viewMoreTemplate": "View {count} More",
     "showFewerLabel": "Show Fewer",
+    "beforeTagLabel": "Before",
+    "afterTagLabel": "After",
+    "ariaLabelPrefix": "Before and after comparison: ",
     "pairs": [
       {
         "id": "driver-door",
@@ -96,6 +103,7 @@
   "reels": {
     "heading": "Video Showcase",
     "subtitle": "Watch our process in action on TikTok & Instagram",
+    "comingSoonLabel": "Coming soon",
     "items": [
       {
         "id": "reel-1",

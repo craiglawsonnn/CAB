@@ -42,6 +42,9 @@ export default function Home() {
           subtitle={siteConfig.beforeAfter.subtitle}
           viewMoreTemplate={siteConfig.beforeAfter.viewMoreTemplate}
           showFewerLabel={siteConfig.beforeAfter.showFewerLabel}
+          beforeTagLabel={siteConfig.beforeAfter.beforeTagLabel}
+          afterTagLabel={siteConfig.beforeAfter.afterTagLabel}
+          ariaLabelPrefix={siteConfig.beforeAfter.ariaLabelPrefix}
         />
         <GallerySection
           images={siteConfig.gallery.images}
@@ -52,6 +55,7 @@ export default function Home() {
           reels={siteConfig.reels.items}
           heading={siteConfig.reels.heading}
           subtitle={siteConfig.reels.subtitle}
+          comingSoonLabel={siteConfig.reels.comingSoonLabel}
         />
         <ReviewsCard
           rating={siteConfig.googleReview.rating}
