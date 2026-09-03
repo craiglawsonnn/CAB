@@ -26,19 +26,19 @@ export default function Home() {
           phoneHref={siteConfig.phoneHref}
           instagramDmUrl={siteConfig.instagramDmUrl}
         />
-        <BeforeAfterSection pairs={siteConfig.beforeAfterPairs} />
-        <GallerySection images={siteConfig.gallery} />
-        <ReelsSection reels={siteConfig.reels} />
+        <BeforeAfterSection pairs={siteConfig.beforeAfter.pairs} />
+        <GallerySection images={siteConfig.gallery.images} />
+        <ReelsSection reels={siteConfig.reels.items} />
         <ReviewsCard
           rating={siteConfig.googleReview.rating}
           reviewCount={siteConfig.googleReview.reviewCount}
           profileUrl={siteConfig.googleReview.profileUrl}
         />
         <PricingSection
-          packages={siteConfig.packages}
-          standaloneOptions={siteConfig.standaloneOptions}
-          quoteServices={siteConfig.quoteServices}
-          items={siteConfig.pricing}
+          packages={siteConfig.pricing.packages}
+          standaloneOptions={siteConfig.pricing.standaloneOptions}
+          quoteServices={siteConfig.pricing.quoteServices}
+          items={siteConfig.pricing.addons}
         />
         <ContactSection
           instagramDmUrl={siteConfig.instagramDmUrl}

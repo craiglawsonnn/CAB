@@ -17,7 +17,7 @@ describe('Home page composition', () => {
 
   it('renders one slider per configured before/after pair', () => {
     render(<Home />);
-    expect(screen.getAllByRole('slider')).toHaveLength(siteConfig.beforeAfterPairs.length);
+    expect(screen.getAllByRole('slider')).toHaveLength(siteConfig.beforeAfter.pairs.length);
   });
 
   it('renders the Call Now nav link with the configured tel href', () => {

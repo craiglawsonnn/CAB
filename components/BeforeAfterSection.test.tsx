@@ -6,25 +6,25 @@ import { siteConfig } from '@/content/site';
 
 describe('BeforeAfterSection', () => {
   it('renders one slider per pair', () => {
-    render(<BeforeAfterSection pairs={siteConfig.beforeAfterPairs} />);
-    expect(screen.getAllByRole('slider')).toHaveLength(siteConfig.beforeAfterPairs.length);
+    render(<BeforeAfterSection pairs={siteConfig.beforeAfter.pairs} />);
+    expect(screen.getAllByRole('slider')).toHaveLength(siteConfig.beforeAfter.pairs.length);
   });
 
   it('sets the section id to portfolio', () => {
-    render(<BeforeAfterSection pairs={siteConfig.beforeAfterPairs} />);
+    render(<BeforeAfterSection pairs={siteConfig.beforeAfter.pairs} />);
     expect(document.getElementById('portfolio')).not.toBeNull();
   });
 
   it('renders every pair caption', () => {
-    render(<BeforeAfterSection pairs={siteConfig.beforeAfterPairs} />);
-    for (const pair of siteConfig.beforeAfterPairs) {
+    render(<BeforeAfterSection pairs={siteConfig.beforeAfter.pairs} />);
+    for (const pair of siteConfig.beforeAfter.pairs) {
       expect(screen.getByText(pair.caption)).toBeInTheDocument();
     }
   });
 
   it('renders a view more button that expands the grid when there are more than three pairs', async () => {
     const user = userEvent.setup();
-    render(<BeforeAfterSection pairs={siteConfig.beforeAfterPairs} />);
+    render(<BeforeAfterSection pairs={siteConfig.beforeAfter.pairs} />);
     const grid = screen.getAllByRole('slider')[0].closest('[class*="grid"]') as HTMLElement;
 
     expect(grid.className).not.toMatch(/expanded/);
@@ -37,7 +37,7 @@ describe('BeforeAfterSection', () => {
   });
 
   it('does not render a view more button when there are three or fewer pairs', () => {
-    render(<BeforeAfterSection pairs={siteConfig.beforeAfterPairs.slice(0, 3)} />);
+    render(<BeforeAfterSection pairs={siteConfig.beforeAfter.pairs.slice(0, 3)} />);
     expect(screen.queryByRole('button', { name: /view \d+ more/i })).toBeNull();
   });
 });

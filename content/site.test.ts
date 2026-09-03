@@ -16,21 +16,25 @@ describe('siteConfig', () => {
     expect(siteConfig.phoneHref).toBe('tel:+14066095321');
   });
 
+  it('has a shared Instagram-pending label used across the site', () => {
+    expect(siteConfig.instagramPendingLabel).toBe('Instagram DM — coming soon');
+  });
+
   it('has exactly six before/after pairs, each with images on disk', () => {
-    expect(siteConfig.beforeAfterPairs).toHaveLength(6);
-    for (const pair of siteConfig.beforeAfterPairs) {
+    expect(siteConfig.beforeAfter.pairs).toHaveLength(6);
+    for (const pair of siteConfig.beforeAfter.pairs) {
       assertImageExists(pair.beforeSrc);
       assertImageExists(pair.afterSrc);
     }
   });
 
   it('has exactly four add-on pricing items', () => {
-    expect(siteConfig.pricing).toHaveLength(4);
+    expect(siteConfig.pricing.addons).toHaveLength(4);
   });
 
   it('has exactly two packages, each with at least one checklist of at least one item', () => {
-    expect(siteConfig.packages).toHaveLength(2);
-    for (const pkg of siteConfig.packages) {
+    expect(siteConfig.pricing.packages).toHaveLength(2);
+    for (const pkg of siteConfig.pricing.packages) {
       expect(pkg.checklists.length).toBeGreaterThan(0);
       for (const checklist of pkg.checklists) {
         expect(checklist.items.length).toBeGreaterThan(0);
@@ -39,26 +43,26 @@ describe('siteConfig', () => {
   });
 
   it('corrects the pre-wash step to plain "Pre-wash" (not "Two-step pre-wash")', () => {
-    const refresh = siteConfig.packages.find((pkg) => pkg.id === 'refresh');
+    const refresh = siteConfig.pricing.packages.find((pkg) => pkg.id === 'refresh');
     const exterior = refresh?.checklists.find((c) => c.heading.startsWith('EXTERIOR'));
     expect(exterior?.items).toContain('Pre-wash');
     expect(exterior?.items).not.toContain('Two-step pre-wash');
   });
 
   it('has exactly four standalone options', () => {
-    expect(siteConfig.standaloneOptions).toHaveLength(4);
+    expect(siteConfig.pricing.standaloneOptions).toHaveLength(4);
   });
 
   it('has exactly two quote-based services, each with at least one pricing factor', () => {
-    expect(siteConfig.quoteServices).toHaveLength(2);
-    for (const service of siteConfig.quoteServices) {
+    expect(siteConfig.pricing.quoteServices).toHaveLength(2);
+    for (const service of siteConfig.pricing.quoteServices) {
       expect(service.factors.length).toBeGreaterThan(0);
     }
   });
 
   it('references gallery images that exist on disk', () => {
-    expect(siteConfig.gallery.length).toBeGreaterThan(0);
-    for (const image of siteConfig.gallery) {
+    expect(siteConfig.gallery.images.length).toBeGreaterThan(0);
+    for (const image of siteConfig.gallery.images) {
       assertImageExists(image.src);
     }
   });
@@ -75,7 +79,7 @@ describe('siteConfig', () => {
   });
 
   it('has a real Instagram reel url for every reel', () => {
-    for (const reel of siteConfig.reels) {
+    for (const reel of siteConfig.reels.items) {
       expect(reel.embedUrl).toMatch(/^https:\/\/www\.instagram\.com\/reel\//);
     }
   });

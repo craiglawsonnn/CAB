@@ -4,10 +4,10 @@ import PricingSection from '@/components/PricingSection';
 import { siteConfig } from '@/content/site';
 
 const props = {
-  packages: siteConfig.packages,
-  standaloneOptions: siteConfig.standaloneOptions,
-  quoteServices: siteConfig.quoteServices,
-  items: siteConfig.pricing,
+  packages: siteConfig.pricing.packages,
+  standaloneOptions: siteConfig.pricing.standaloneOptions,
+  quoteServices: siteConfig.pricing.quoteServices,
+  items: siteConfig.pricing.addons,
 };
 
 describe('PricingSection', () => {
