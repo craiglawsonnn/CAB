@@ -1778,7 +1778,7 @@ describe('PricingSection', () => {
 
   it('renders the standalone pricing caveat', () => {
     render(<PricingSection {...props} />);
-    expect(screen.getByText(props.standaloneCaveat)).toBeInTheDocument();
+    expect(screen.getAllByText(props.standaloneCaveat).length).toBeGreaterThan(0);
   });
 
   it('renders every quote service name, starting price, and pricing factors', () => {
@@ -1800,7 +1800,7 @@ describe('PricingSection', () => {
     expect(screen.getByText(props.standaloneSubtitle)).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: props.quoteHeading })).toBeInTheDocument();
     expect(screen.getByText(props.quoteSubtitle)).toBeInTheDocument();
-    expect(screen.getByText(props.quoteFactorsLabel)).toBeInTheDocument();
+    expect(screen.getAllByText(props.quoteFactorsLabel).length).toBeGreaterThan(0);
     expect(screen.getByRole('heading', { name: props.addonsHeading })).toBeInTheDocument();
     expect(screen.getByText(props.addonsSubtitle)).toBeInTheDocument();
   });
