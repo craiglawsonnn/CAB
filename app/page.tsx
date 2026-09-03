@@ -67,6 +67,16 @@ export default function Home() {
           standaloneOptions={siteConfig.pricing.standaloneOptions}
           quoteServices={siteConfig.pricing.quoteServices}
           items={siteConfig.pricing.addons}
+          heading={siteConfig.pricing.heading}
+          subtitle={siteConfig.pricing.subtitle}
+          standaloneHeading={siteConfig.pricing.standaloneHeading}
+          standaloneSubtitle={siteConfig.pricing.standaloneSubtitle}
+          standaloneCaveat={siteConfig.pricing.standaloneCaveat}
+          quoteHeading={siteConfig.pricing.quoteHeading}
+          quoteSubtitle={siteConfig.pricing.quoteSubtitle}
+          quoteFactorsLabel={siteConfig.pricing.quoteFactorsLabel}
+          addonsHeading={siteConfig.pricing.addonsHeading}
+          addonsSubtitle={siteConfig.pricing.addonsSubtitle}
         />
         <ContactSection
           instagramDmUrl={siteConfig.instagramDmUrl}

@@ -8,6 +8,16 @@ const props = {
   standaloneOptions: siteConfig.pricing.standaloneOptions,
   quoteServices: siteConfig.pricing.quoteServices,
   items: siteConfig.pricing.addons,
+  heading: siteConfig.pricing.heading,
+  subtitle: siteConfig.pricing.subtitle,
+  standaloneHeading: siteConfig.pricing.standaloneHeading,
+  standaloneSubtitle: siteConfig.pricing.standaloneSubtitle,
+  standaloneCaveat: siteConfig.pricing.standaloneCaveat,
+  quoteHeading: siteConfig.pricing.quoteHeading,
+  quoteSubtitle: siteConfig.pricing.quoteSubtitle,
+  quoteFactorsLabel: siteConfig.pricing.quoteFactorsLabel,
+  addonsHeading: siteConfig.pricing.addonsHeading,
+  addonsSubtitle: siteConfig.pricing.addonsSubtitle,
 };
 
 describe('PricingSection', () => {
@@ -49,6 +59,11 @@ describe('PricingSection', () => {
     }
   });
 
+  it('renders the standalone pricing caveat', () => {
+    render(<PricingSection {...props} />);
+    expect(screen.getAllByText(props.standaloneCaveat).length).toBeGreaterThan(0);
+  });
+
   it('renders every quote service name, starting price, and pricing factors', () => {
     render(<PricingSection {...props} />);
     for (const service of props.quoteServices) {
@@ -58,6 +73,19 @@ describe('PricingSection', () => {
         expect(screen.getAllByText(factor).length).toBeGreaterThan(0);
       }
     }
+  });
+
+  it('renders all configured headings and subtitles', () => {
+    render(<PricingSection {...props} />);
+    expect(screen.getByRole('heading', { name: props.heading })).toBeInTheDocument();
+    expect(screen.getByText(props.subtitle)).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: props.standaloneHeading })).toBeInTheDocument();
+    expect(screen.getByText(props.standaloneSubtitle)).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: props.quoteHeading })).toBeInTheDocument();
+    expect(screen.getByText(props.quoteSubtitle)).toBeInTheDocument();
+    expect(screen.getAllByText(props.quoteFactorsLabel).length).toBeGreaterThan(0);
+    expect(screen.getByRole('heading', { name: props.addonsHeading })).toBeInTheDocument();
+    expect(screen.getByText(props.addonsSubtitle)).toBeInTheDocument();
   });
 
   it('sets the section id to services', () => {

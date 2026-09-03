@@ -6,6 +6,16 @@ export interface PricingSectionProps {
   standaloneOptions: StandaloneOption[];
   quoteServices: QuoteService[];
   items: PricingItem[];
+  heading: string;
+  subtitle: string;
+  standaloneHeading: string;
+  standaloneSubtitle: string;
+  standaloneCaveat: string;
+  quoteHeading: string;
+  quoteSubtitle: string;
+  quoteFactorsLabel: string;
+  addonsHeading: string;
+  addonsSubtitle: string;
 }
 
 export default function PricingSection({
@@ -13,12 +23,22 @@ export default function PricingSection({
   standaloneOptions,
   quoteServices,
   items,
+  heading,
+  subtitle,
+  standaloneHeading,
+  standaloneSubtitle,
+  standaloneCaveat,
+  quoteHeading,
+  quoteSubtitle,
+  quoteFactorsLabel,
+  addonsHeading,
+  addonsSubtitle,
 }: PricingSectionProps) {
   return (
     <section id="services" className={styles.section}>
       <div className={styles.inner}>
-        <h2>Packages &amp; Pricing</h2>
-        <p className={styles.subtitle}>Choose the level of care your car deserves</p>
+        <h2>{heading}</h2>
+        <p className={styles.subtitle}>{subtitle}</p>
         <div className={styles.packages}>
           {packages.map((pkg) => (
             <div
@@ -49,8 +69,8 @@ export default function PricingSection({
           ))}
         </div>
 
-        <h3 className={styles.standaloneHeading}>Only Need One?</h3>
-        <p className={styles.subtitle}>You can book your interior or exterior service separately.</p>
+        <h3 className={styles.standaloneHeading}>{standaloneHeading}</h3>
+        <p className={styles.subtitle}>{standaloneSubtitle}</p>
         <ul className={styles.list}>
           {standaloneOptions.map((option) => (
             <li key={option.id}>
@@ -62,9 +82,10 @@ export default function PricingSection({
             </li>
           ))}
         </ul>
+        <p className={styles.priceNote}>{standaloneCaveat}</p>
 
-        <h3 className={styles.addonsHeading}>Correction &amp; Protection Services</h3>
-        <p className={styles.subtitle}>Contact us for a personalized quote</p>
+        <h3 className={styles.addonsHeading}>{quoteHeading}</h3>
+        <p className={styles.subtitle}>{quoteSubtitle}</p>
         <div className={styles.quoteServices}>
           {quoteServices.map((service) => (
             <div key={service.id} className={styles.quoteCard}>
@@ -72,7 +93,7 @@ export default function PricingSection({
               <h3>{service.name}</h3>
               <strong className={styles.packagePrice}>{service.startingPrice}</strong>
               <p className={styles.description}>{service.description}</p>
-              <p className={styles.checklistNote}>Pricing varies depending on:</p>
+              <p className={styles.checklistNote}>{quoteFactorsLabel}</p>
               <ul className={styles.featureList}>
                 {service.factors.map((factor) => (
                   <li key={factor}>{factor}</li>
@@ -86,8 +107,8 @@ export default function PricingSection({
           ))}
         </div>
 
-        <h3 className={styles.addonsHeading}>Add-On Services</h3>
-        <p className={styles.subtitle}>Stack these onto any package</p>
+        <h3 className={styles.addonsHeading}>{addonsHeading}</h3>
+        <p className={styles.subtitle}>{addonsSubtitle}</p>
         <ul className={styles.list}>
           {items.map((item) => (
             <li key={item.id} className={styles.item}>
