@@ -36,7 +36,13 @@ export default function Home() {
           instagramButtonLabel={siteConfig.hero.instagramButtonLabel}
           callButtonPrefix={siteConfig.hero.callButtonPrefix}
         />
-        <BeforeAfterSection pairs={siteConfig.beforeAfter.pairs} />
+        <BeforeAfterSection
+          pairs={siteConfig.beforeAfter.pairs}
+          heading={siteConfig.beforeAfter.heading}
+          subtitle={siteConfig.beforeAfter.subtitle}
+          viewMoreTemplate={siteConfig.beforeAfter.viewMoreTemplate}
+          showFewerLabel={siteConfig.beforeAfter.showFewerLabel}
+        />
         <GallerySection images={siteConfig.gallery.images} />
         <ReelsSection reels={siteConfig.reels.items} />
         <ReviewsCard
