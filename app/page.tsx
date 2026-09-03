@@ -16,8 +16,12 @@ export default function Home() {
         phoneDisplay={siteConfig.phoneDisplay}
         phoneHref={siteConfig.phoneHref}
         instagramDmUrl={siteConfig.instagramDmUrl}
+        instagramPendingLabel={siteConfig.instagramPendingLabel}
         logoSrc={siteConfig.logoSrc}
         businessName={siteConfig.businessName}
+        links={siteConfig.nav.links}
+        callButtonLabel={siteConfig.nav.callButtonLabel}
+        instagramButtonLabel={siteConfig.nav.instagramButtonLabel}
       />
       <main>
         <Hero

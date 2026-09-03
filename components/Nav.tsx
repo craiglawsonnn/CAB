@@ -1,31 +1,31 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import type { NavLink } from '@/content/site';
 import styles from './Nav.module.css';
 
 export interface NavProps {
   phoneDisplay: string;
   phoneHref: string;
   instagramDmUrl: string | null;
+  instagramPendingLabel: string;
   logoSrc: string;
   businessName: string;
+  links: NavLink[];
+  callButtonLabel: string;
+  instagramButtonLabel: string;
 }
-
-const NAV_LINKS = [
-  { href: '#services', label: 'Services' },
-  { href: '#portfolio', label: 'Before & After' },
-  { href: '#gallery', label: 'Gallery' },
-  { href: '#social-showcase', label: 'Reels' },
-  { href: '#reviews', label: 'Reviews' },
-  { href: '#contact', label: 'Contact' },
-];
 
 export default function Nav({
   phoneDisplay,
   phoneHref,
   instagramDmUrl,
+  instagramPendingLabel,
   logoSrc,
   businessName,
+  links,
+  callButtonLabel,
+  instagramButtonLabel,
 }: NavProps) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -58,7 +58,7 @@ export default function Nav({
           id="primary-navigation"
           className={`${styles.links} ${menuOpen ? styles.linksOpen : ''}`}
         >
-          {NAV_LINKS.map((link) => (
+          {links.map((link) => (
             <a key={link.href} href={link.href} onClick={() => setMenuOpen(false)}>
               {link.label}
             </a>
@@ -66,15 +66,15 @@ export default function Nav({
         </nav>
         <div className={styles.cta}>
           <a href={phoneHref} className={styles.btnOutline}>
-            Call Now
+            {callButtonLabel}
           </a>
           {instagramDmUrl ? (
             <a href={instagramDmUrl} className={styles.btnAccent}>
-              DM on Instagram
+              {instagramButtonLabel}
             </a>
           ) : (
             <span className={`${styles.btnAccent} ${styles.btnDisabled}`} aria-disabled="true">
-              Instagram DM — coming soon
+              {instagramPendingLabel}
             </span>
           )}
         </div>

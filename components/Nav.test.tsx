@@ -9,12 +9,23 @@ const props = {
   instagramDmUrl: 'https://instagram.com/direct/inbox/',
   logoSrc: '/images/logo.jpg',
   businessName: 'CAB Premium Detailing',
+  links: [
+    { href: '#services', label: 'Services' },
+    { href: '#portfolio', label: 'Before & After' },
+    { href: '#gallery', label: 'Gallery' },
+    { href: '#social-showcase', label: 'Reels' },
+    { href: '#reviews', label: 'Reviews' },
+    { href: '#contact', label: 'Contact' },
+  ],
+  callButtonLabel: 'Call Now',
+  instagramButtonLabel: 'DM on Instagram',
+  instagramPendingLabel: 'Instagram DM — coming soon',
 };
 
 describe('Nav', () => {
   it('renders a Call Now link using the phoneHref prop', () => {
     render(<Nav {...props} />);
-    expect(screen.getByRole('link', { name: 'Call Now' })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: props.callButtonLabel })).toHaveAttribute(
       'href',
       props.phoneHref
     );
@@ -22,17 +33,16 @@ describe('Nav', () => {
 
   it('renders a DM on Instagram link using the instagramDmUrl prop', () => {
     render(<Nav {...props} />);
-    expect(screen.getByRole('link', { name: 'DM on Instagram' })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: props.instagramButtonLabel })).toHaveAttribute(
       'href',
       props.instagramDmUrl
     );
   });
 
-  it('renders all six anchor nav links', () => {
+  it('renders every configured nav link', () => {
     render(<Nav {...props} />);
-    const expected = ['Services', 'Before & After', 'Gallery', 'Reels', 'Reviews', 'Contact'];
-    for (const label of expected) {
-      expect(screen.getByRole('link', { name: label })).toBeInTheDocument();
+    for (const link of props.links) {
+      expect(screen.getByRole('link', { name: link.label })).toHaveAttribute('href', link.href);
     }
   });
 
@@ -62,7 +72,7 @@ describe('Nav', () => {
 
   it('renders a disabled pending state when instagramDmUrl is null', () => {
     render(<Nav {...props} instagramDmUrl={null} />);
-    expect(screen.queryByRole('link', { name: 'DM on Instagram' })).toBeNull();
-    expect(screen.getByText('Instagram DM — coming soon')).toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: props.instagramButtonLabel })).toBeNull();
+    expect(screen.getByText(props.instagramPendingLabel)).toBeInTheDocument();
   });
 });
