@@ -57,6 +57,10 @@ export default function Home() {
           rating={siteConfig.googleReview.rating}
           reviewCount={siteConfig.googleReview.reviewCount}
           profileUrl={siteConfig.googleReview.profileUrl}
+          heading={siteConfig.googleReview.heading}
+          countTemplate={siteConfig.googleReview.countTemplate}
+          viewButtonLabel={siteConfig.googleReview.viewButtonLabel}
+          pendingLabel={siteConfig.googleReview.pendingLabel}
         />
         <PricingSection
           packages={siteConfig.pricing.packages}
