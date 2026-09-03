@@ -48,7 +48,11 @@ export default function Home() {
           heading={siteConfig.gallery.heading}
           subtitle={siteConfig.gallery.subtitle}
         />
-        <ReelsSection reels={siteConfig.reels.items} />
+        <ReelsSection
+          reels={siteConfig.reels.items}
+          heading={siteConfig.reels.heading}
+          subtitle={siteConfig.reels.subtitle}
+        />
         <ReviewsCard
           rating={siteConfig.googleReview.rating}
           reviewCount={siteConfig.googleReview.reviewCount}
