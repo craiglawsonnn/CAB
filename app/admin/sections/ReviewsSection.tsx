@@ -2,6 +2,7 @@
 
 import type { GoogleReviewConfig } from '@/content/site';
 import TextField from '@/components/admin/TextField';
+import NumberField from '@/components/admin/NumberField';
 import styles from './Section.module.css';
 
 export interface ReviewsSectionProps {
@@ -16,16 +17,8 @@ export default function ReviewsSection({ content, onChange }: ReviewsSectionProp
     <section className={styles.section}>
       <h2>Reviews</h2>
       <TextField label="Heading" value={content.heading} onChange={(heading) => update({ heading })} />
-      <TextField
-        label="Rating (e.g. 4.9)"
-        value={String(content.rating)}
-        onChange={(value) => update({ rating: Number(value) || 0 })}
-      />
-      <TextField
-        label="Review Count"
-        value={String(content.reviewCount)}
-        onChange={(value) => update({ reviewCount: Number(value) || 0 })}
-      />
+      <NumberField label="Rating (e.g. 4.9)" value={content.rating} onChange={(rating) => update({ rating })} />
+      <NumberField label="Review Count" value={content.reviewCount} onChange={(reviewCount) => update({ reviewCount })} />
       <TextField
         label="Google Profile URL (leave blank to show 'coming soon')"
         value={content.profileUrl ?? ''}

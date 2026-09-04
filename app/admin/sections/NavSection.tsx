@@ -17,7 +17,7 @@ export default function NavSection({ content, onChange }: NavSectionProps) {
       <ListEditor<NavLink>
         items={content.links}
         onChange={(links) => onChange({ ...content, links })}
-        getKey={(link, index) => `${link.href}-${index}`}
+        getKey={(_, index) => String(index)}
         createItem={() => ({ href: '#', label: 'New Link' })}
         addLabel="Add Nav Link"
         renderItem={(link, onUpdate) => (

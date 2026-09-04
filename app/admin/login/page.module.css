@@ -32,6 +32,6 @@
 }
 
 .error {
-  color: #c0392b;
+  color: var(--color-error-text);
   font-size: 0.9em;
 }

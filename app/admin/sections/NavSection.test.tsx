@@ -1,4 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
+import { useState } from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import NavSection from './NavSection';
@@ -35,5 +36,27 @@ describe('NavSection', () => {
     render(<NavSection content={content} onChange={onChange} />);
     await user.type(screen.getByLabelText('Call Button Label'), 'X');
     expect(onChange).toHaveBeenLastCalledWith({ ...content, callButtonLabel: 'Call NowX' });
+  });
+
+  it('does not lose focus while typing multiple characters into the link field', async () => {
+    // A static content prop + a plain mock onChange never actually updates
+    // what's on screen (the field is fully controlled), so this regression
+    // only shows up when a real parent re-renders with the new value on each
+    // keystroke, same as production usage.
+    function Wrapper() {
+      const [state, setState] = useState(content);
+      return <NavSection content={state} onChange={setState} />;
+    }
+    const user = userEvent.setup();
+    render(<Wrapper />);
+
+    const linkField = screen.getByLabelText('Link (e.g. #services)');
+    await user.clear(linkField);
+    await user.type(linkField, '#about');
+
+    // If the ListEditor key were derived from href (as it changes on every
+    // keystroke), React would remount this field's input on each character,
+    // dropping focus and losing subsequently typed characters.
+    expect(linkField).toHaveValue('#about');
   });
 });
