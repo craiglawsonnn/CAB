@@ -4,8 +4,11 @@ import { useCallback, useEffect, useState } from 'react';
 import type { SiteConfig } from '@/content/site';
 import SaveBar from '@/components/admin/SaveBar';
 import BasicsSection, { type BasicsFields } from './sections/BasicsSection';
+import SiteImagesSection from './sections/SiteImagesSection';
 import NavSection from './sections/NavSection';
 import HeroSection from './sections/HeroSection';
+import BeforeAfterSection from './sections/BeforeAfterSection';
+import GallerySection from './sections/GallerySection';
 import ReelsSection from './sections/ReelsSection';
 import ReviewsSection from './sections/ReviewsSection';
 import ContactSection from './sections/ContactSection';
@@ -20,11 +23,39 @@ export interface AdminDashboardProps {
 export default function AdminDashboard({ initialContent }: AdminDashboardProps) {
   const [content, setContent] = useState<SiteConfig>(initialContent);
   const [dirty, setDirty] = useState(false);
+  const [pendingImages, setPendingImages] = useState<Record<string, File>>({});
+  const [pendingDeletes, setPendingDeletes] = useState<Set<string>>(new Set());
 
   const updateContent = useCallback((patch: Partial<SiteConfig>) => {
     setContent((prev) => ({ ...prev, ...patch }));
     setDirty(true);
   }, []);
+
+  const registerImage = useCallback((path: string, file: File) => {
+    setPendingImages((prev) => ({ ...prev, [path]: file }));
+    setPendingDeletes((prev) => {
+      if (!prev.has(path)) return prev;
+      const next = new Set(prev);
+      next.delete(path);
+      return next;
+    });
+    setDirty(true);
+  }, []);
+
+  const removeImage = useCallback(
+    (path: string) => {
+      setPendingImages((prev) => {
+        const next = { ...prev };
+        delete next[path];
+        return next;
+      });
+      if (!(path in pendingImages)) {
+        setPendingDeletes((prev) => new Set(prev).add(path));
+      }
+      setDirty(true);
+    },
+    [pendingImages]
+  );
 
   useEffect(() => {
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {
@@ -57,16 +88,44 @@ export default function AdminDashboard({ initialContent }: AdminDashboardProps) 
     });
   };
 
+  const handleSaved = () => {
+    setDirty(false);
+    setPendingImages({});
+    setPendingDeletes(new Set());
+  };
+
   return (
     <main className={styles.page}>
       <div className={styles.header}>
         <h1>Admin Dashboard</h1>
         <LogoutButton />
       </div>
-      <SaveBar content={content} onSaved={() => setDirty(false)} />
+      <SaveBar
+        content={content}
+        pendingImages={pendingImages}
+        pendingDeletes={Array.from(pendingDeletes)}
+        onSaved={handleSaved}
+      />
       <BasicsSection fields={basicsFields} onChange={handleBasicsChange} />
+      <SiteImagesSection
+        logoSrc={content.logoSrc}
+        heroImageSrc={content.heroImageSrc}
+        onImageSelected={registerImage}
+      />
       <NavSection content={content.nav} onChange={(nav) => updateContent({ nav })} />
       <HeroSection content={content.hero} onChange={(hero) => updateContent({ hero })} />
+      <BeforeAfterSection
+        content={content.beforeAfter}
+        onChange={(beforeAfter) => updateContent({ beforeAfter })}
+        onImageSelected={registerImage}
+        onImageRemoved={removeImage}
+      />
+      <GallerySection
+        content={content.gallery}
+        onChange={(gallery) => updateContent({ gallery })}
+        onImageSelected={registerImage}
+        onImageRemoved={removeImage}
+      />
       <ReelsSection content={content.reels} onChange={(reels) => updateContent({ reels })} />
       <ReviewsSection
         content={content.googleReview}
