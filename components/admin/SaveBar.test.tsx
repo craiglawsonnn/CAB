@@ -49,4 +49,29 @@ describe('SaveBar', () => {
 
     expect(await screen.findByRole('alert')).toHaveTextContent('Network error');
   });
+
+  it('resolves pending image uploads and deletes into the images array before posting', async () => {
+    const fetchMock = vi
+      .spyOn(global, 'fetch')
+      .mockResolvedValue(new Response(JSON.stringify({ ok: true, commitSha: 'abc' }), { status: 200 }));
+    const file = new File(['fake-bytes'], 'new.jpg', { type: 'image/jpeg' });
+    const user = userEvent.setup();
+    render(
+      <SaveBar
+        content={siteConfig}
+        pendingImages={{ '/images/new.jpg': file }}
+        pendingDeletes={['/images/old.jpg']}
+      />
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Save & Publish' }));
+
+    expect(await screen.findByRole('status')).toHaveTextContent('Saved');
+    const [, requestInit] = fetchMock.mock.calls[0];
+    const body = JSON.parse((requestInit as RequestInit).body as string);
+    expect(body.images).toEqual([
+      { path: 'public/images/new.jpg', action: 'upsert', base64: Buffer.from('fake-bytes').toString('base64') },
+      { path: 'public/images/old.jpg', action: 'delete' },
+    ]);
+  });
 });
