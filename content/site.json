@@ -12,12 +12,30 @@
   "heroImageSrc": "/images/hero.jpg",
   "nav": {
     "links": [
-      { "href": "#services", "label": "Services" },
-      { "href": "#portfolio", "label": "Before & After" },
-      { "href": "#gallery", "label": "Gallery" },
-      { "href": "#social-showcase", "label": "Reels" },
-      { "href": "#reviews", "label": "Reviews" },
-      { "href": "#contact", "label": "Contact" }
+      {
+        "href": "#services",
+        "label": "Services"
+      },
+      {
+        "href": "#portfolio",
+        "label": "Before & After"
+      },
+      {
+        "href": "#gallery",
+        "label": "Gallery"
+      },
+      {
+        "href": "#social-showcase",
+        "label": "Reels"
+      },
+      {
+        "href": "#reviews",
+        "label": "Reviews"
+      },
+      {
+        "href": "#contact",
+        "label": "Contact"
+      }
     ],
     "callButtonLabel": "Call Now",
     "instagramButtonLabel": "DM on Instagram"
@@ -214,15 +232,27 @@
     "standaloneHeading": "Only Need One?",
     "standaloneSubtitle": "You can book your interior or exterior service separately.",
     "standaloneOptions": [
-      { "id": "exterior-refresh", "name": "Exterior Refresh", "price": "$79" },
-      { "id": "interior-refresh", "name": "Interior Refresh", "price": "$140" },
+      {
+        "id": "exterior-refresh",
+        "name": "Exterior Refresh",
+        "price": "$79"
+      },
+      {
+        "id": "interior-refresh",
+        "name": "Interior Refresh",
+        "price": "$140"
+      },
       {
         "id": "full-exterior",
         "name": "Full Exterior",
         "price": "$120",
         "groupLabel": "For a deeper clean:"
       },
-      { "id": "full-interior", "name": "Full Interior", "price": "$200" }
+      {
+        "id": "full-interior",
+        "name": "Full Interior",
+        "price": "$200"
+      }
     ],
     "standaloneCaveat": "Pricing may vary depending on vehicle size and condition.",
     "quoteHeading": "Correction & Protection Services",
@@ -263,15 +293,28 @@
     "addonsHeading": "Add-On Services",
     "addonsSubtitle": "Stack these onto any package",
     "addons": [
-      { "id": "headlight", "name": "Headlight Restoration", "price": "$80–$120" },
-      { "id": "pet-hair", "name": "Heavy Pet Hair Removal", "price": "From $40" },
+      {
+        "id": "headlight",
+        "name": "Headlight Restoration",
+        "price": "$80–$120"
+      },
+      {
+        "id": "pet-hair",
+        "name": "Heavy Pet Hair Removal",
+        "price": "From $40"
+      },
       {
         "id": "ceramic-spray",
         "name": "Ceramic Spray Protection",
         "detail": "Lasts 3–6 months",
         "price": "$60–$75"
       },
-      { "id": "odor", "name": "Odor Elimination", "detail": "Ozone Treatment", "price": "$50" }
+      {
+        "id": "odor",
+        "name": "Odor Elimination",
+        "detail": "Ozone Treatment",
+        "price": "$50"
+      }
     ]
   },
   "contact": {
@@ -281,7 +324,7 @@
     "callButtonPrefix": "Call / Text "
   },
   "footer": {
-    "copyrightSuffix": "All rights reserved.",
+    "copyrightSuffix": "All rights reserved. ✓",
     "instagramLabel": "Instagram",
     "googleLabel": "Google Page"
   }
