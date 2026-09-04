@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { SiteConfig } from '@/content/site';
 import SaveBar from '@/components/admin/SaveBar';
 import BasicsSection, { type BasicsFields } from './sections/BasicsSection';
@@ -20,11 +20,21 @@ export interface AdminDashboardProps {
   initialContent: SiteConfig;
 }
 
+function getPublishedPaths(config: SiteConfig): Set<string> {
+  return new Set<string>([
+    config.logoSrc,
+    config.heroImageSrc,
+    ...config.gallery.images.map((image) => image.src),
+    ...config.beforeAfter.pairs.flatMap((pair) => [pair.beforeSrc, pair.afterSrc]),
+  ]);
+}
+
 export default function AdminDashboard({ initialContent }: AdminDashboardProps) {
   const [content, setContent] = useState<SiteConfig>(initialContent);
   const [dirty, setDirty] = useState(false);
   const [pendingImages, setPendingImages] = useState<Record<string, File>>({});
   const [pendingDeletes, setPendingDeletes] = useState<Set<string>>(new Set());
+  const publishedPaths = useMemo(() => getPublishedPaths(initialContent), [initialContent]);
 
   const updateContent = useCallback((patch: Partial<SiteConfig>) => {
     setContent((prev) => ({ ...prev, ...patch }));
@@ -49,12 +59,12 @@ export default function AdminDashboard({ initialContent }: AdminDashboardProps) 
         delete next[path];
         return next;
       });
-      if (!(path in pendingImages)) {
+      if (publishedPaths.has(path)) {
         setPendingDeletes((prev) => new Set(prev).add(path));
       }
       setDirty(true);
     },
-    [pendingImages]
+    [publishedPaths]
   );
 
   useEffect(() => {
@@ -102,6 +112,7 @@ export default function AdminDashboard({ initialContent }: AdminDashboardProps) 
       </div>
       <SaveBar
         content={content}
+        publishedPaths={publishedPaths}
         pendingImages={pendingImages}
         pendingDeletes={Array.from(pendingDeletes)}
         onSaved={handleSaved}

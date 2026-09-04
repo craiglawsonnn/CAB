@@ -67,8 +67,12 @@ export async function POST(request: Request) {
       changes.push({ path: image.path, action: 'delete' });
       continue;
     }
-    const compressed = await processImage(image.base64 as string, IMAGE_MAX_WIDTH);
-    changes.push({ path: image.path, action: 'upsert', content: compressed });
+    try {
+      const compressed = await processImage(image.base64 as string, IMAGE_MAX_WIDTH);
+      changes.push({ path: image.path, action: 'upsert', content: compressed });
+    } catch {
+      return NextResponse.json({ ok: false, error: 'One or more images could not be processed.' }, { status: 400 });
+    }
   }
 
   const contentJson = JSON.stringify(validated.content, null, 2);

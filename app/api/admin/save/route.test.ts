@@ -118,6 +118,21 @@ describe('POST /api/admin/save', () => {
     );
   });
 
+  it('returns a clean 400 (not an unhandled 500) when an image cannot be processed', async () => {
+    mockProcessImage.mockRejectedValue(new Error('Unsupported image format: svg'));
+    const response = await POST(
+      makeRequest({
+        content: VALID_CONTENT,
+        images: [{ path: 'public/images/bad.svg', action: 'upsert', base64: 'ZGF0YQ==' }],
+      })
+    );
+
+    expect(response.status).toBe(400);
+    const body = await response.json();
+    expect(body.ok).toBe(false);
+    expect(mockPublishFiles).not.toHaveBeenCalled();
+  });
+
   it('returns 502 when publishing fails', async () => {
     mockPublishFiles.mockRejectedValue(new Error('GitHub API error'));
     const response = await POST(makeRequest({ content: VALID_CONTENT, images: [] }));

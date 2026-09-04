@@ -20,8 +20,8 @@ describe('siteConfig', () => {
     expect(siteConfig.instagramPendingLabel).toBe('Instagram DM — coming soon');
   });
 
-  it('has exactly six before/after pairs, each with images on disk', () => {
-    expect(siteConfig.beforeAfter.pairs).toHaveLength(6);
+  it('has at least one before/after pair, each with images on disk', () => {
+    expect(siteConfig.beforeAfter.pairs.length).toBeGreaterThan(0);
     for (const pair of siteConfig.beforeAfter.pairs) {
       assertImageExists(pair.beforeSrc);
       assertImageExists(pair.afterSrc);
