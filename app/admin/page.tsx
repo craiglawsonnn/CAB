@@ -1,11 +1,6 @@
-import LogoutButton from './LogoutButton';
+import { siteConfig } from '@/content/site';
+import AdminDashboard from './AdminDashboard';
 
 export default function AdminDashboardPage() {
-  return (
-    <main style={{ padding: 32 }}>
-      <h1>Admin Dashboard</h1>
-      <p>Content editing tools are coming soon.</p>
-      <LogoutButton />
-    </main>
-  );
+  return <AdminDashboard initialContent={siteConfig} />;
 }
