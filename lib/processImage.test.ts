@@ -33,4 +33,9 @@ describe('processImage', () => {
     const metadata = await sharp(Buffer.from(outputBase64, 'base64')).metadata();
     expect(metadata.format).toBe('jpeg');
   });
+
+  it('rejects disallowed formats such as SVG', async () => {
+    const svgBase64 = Buffer.from('<svg xmlns="http://www.w3.org/2000/svg"/>').toString('base64');
+    await expect(processImage(svgBase64, 50)).rejects.toThrow();
+  });
 });
