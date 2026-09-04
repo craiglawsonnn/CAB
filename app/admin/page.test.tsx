@@ -8,9 +8,10 @@ vi.mock('next/navigation', () => ({
 import AdminDashboardPage from './page';
 
 describe('AdminDashboardPage', () => {
-  it('renders a heading and a logout button', () => {
+  it('renders the dashboard heading, at least one real section, and a logout button', () => {
     render(<AdminDashboardPage />);
     expect(screen.getByRole('heading', { name: 'Admin Dashboard' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Site Basics' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Log out' })).toBeInTheDocument();
   });
 });
