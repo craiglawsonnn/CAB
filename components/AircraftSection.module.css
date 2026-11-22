@@ -1,0 +1,490 @@
+/* Aviation section — keeps the site's dark/cobalt/Fraunces language but adds a
+   flight-line flavour: a faint sectional-chart grid, a runway centreline down
+   the middle, and a boarding-pass style package "ticket". */
+
+.section {
+  --grid-line: rgba(92, 121, 232, 0.07);
+  position: relative;
+  padding: 120px 24px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 60% 40% at 85% 0%, rgba(29, 62, 209, 0.22), transparent 70%),
+    radial-gradient(ellipse 50% 35% at 0% 100%, rgba(29, 62, 209, 0.12), transparent 70%),
+    linear-gradient(var(--grid-line) 1px, transparent 1px) 0 0 / 56px 56px,
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px) 0 0 / 56px 56px,
+    var(--color-bg);
+  border-top: 1px solid rgba(154, 148, 136, 0.18);
+  border-bottom: 1px solid rgba(154, 148, 136, 0.18);
+}
+
+/* Runway centreline */
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 3px;
+  transform: translateX(-50%);
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(245, 242, 236, 0.06) 0 48px,
+    transparent 48px 96px
+  );
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-accent-text);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 2px;
+  background: var(--color-accent-text);
+}
+
+/* ---------- Intro ---------- */
+
+.intro {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.heading {
+  margin-top: 20px;
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  line-height: 1.08;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.paragraph {
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin: 18px 0 0;
+}
+
+.credentials {
+  list-style: none;
+  padding: 0;
+  margin: 32px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.credentials li {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border: 1px solid rgba(92, 121, 232, 0.45);
+  border-radius: 999px;
+  background: rgba(29, 62, 209, 0.1);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Pre-flight checklist tick */
+.credentials li::before {
+  content: '';
+  width: 6px;
+  height: 11px;
+  border: solid var(--color-accent-text);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) translateY(-2px);
+}
+
+.introPhotos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.photo {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  border: 1px solid rgba(154, 148, 136, 0.35);
+  background: var(--color-bg-elevated);
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  transition: transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.photo:hover img {
+  transform: scale(1.05);
+}
+
+.photo figcaption {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(11, 10, 9, 0.78);
+  backdrop-filter: blur(6px);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.photoTall img {
+  aspect-ratio: 3 / 4.6;
+}
+
+.photoOffset {
+  margin-top: 72px;
+}
+
+/* ---------- Pull quote ---------- */
+
+.quote {
+  margin: 112px auto 0;
+  max-width: 880px;
+  text-align: center;
+}
+
+.quote p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.8rem, 4.2vw, 3rem);
+  line-height: 1.15;
+}
+
+.quote footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+}
+
+/* Horizon lines either side of the tagline */
+.quote footer::before,
+.quote footer::after {
+  content: '';
+  flex: 0 1 64px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-chrome-mid), transparent);
+}
+
+/* ---------- Packages ---------- */
+
+.packagesHeading {
+  margin-top: 112px;
+  text-align: center;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+}
+
+.packages {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* Boarding-pass style ticket: cobalt-tinted card, dashed tear line under the header */
+.ticket {
+  position: relative;
+  padding: 36px 40px;
+  border-radius: var(--radius-card);
+  background:
+    linear-gradient(135deg, rgba(29, 62, 209, 0.2), transparent 55%),
+    var(--color-bg-elevated);
+  border: 1px solid rgba(92, 121, 232, 0.55);
+  box-shadow: 0 0 48px rgba(29, 62, 209, 0.18);
+}
+
+.ticketHeader {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px dashed rgba(154, 148, 136, 0.45);
+}
+
+.ticketHeader h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  line-height: 1.2;
+  max-width: 26ch;
+}
+
+.ticketPrice {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--color-accent-text);
+  white-space: nowrap;
+}
+
+.includesLabel {
+  margin: 20px 0 0;
+  font-weight: 600;
+}
+
+.checklist {
+  list-style: none;
+  counter-reset: step;
+  padding: 0;
+  margin: 12px 0 0;
+}
+
+.checklist li {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 8px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(154, 148, 136, 0.18);
+  line-height: 1.5;
+}
+
+.checklist li::before {
+  content: counter(step, decimal-leading-zero);
+  font-family: var(--font-display);
+  color: var(--color-accent-text);
+  font-weight: 600;
+}
+
+.checklist li:last-child {
+  border-bottom: none;
+}
+
+.note {
+  margin: 16px 0 0;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.footnote {
+  margin: 6px 0 0;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+.quoteCard {
+  display: flex;
+  flex-direction: column;
+  padding: 36px 32px;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--color-chrome-mid);
+  background: var(--color-bg-elevated);
+}
+
+.quoteCard h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+}
+
+.quoteCard p {
+  margin: 16px 0 0;
+  color: var(--color-text-muted);
+  line-height: 1.65;
+}
+
+.quoteCard .quoteCta {
+  margin-top: auto;
+  padding-top: 24px;
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.quoteActions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.quoteActions a {
+  text-align: center;
+}
+
+/* ---------- Photo strip ---------- */
+
+.strip {
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+/* ---------- Mobile service band ---------- */
+
+.mobile {
+  margin-top: 96px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) 1fr;
+  gap: 48px;
+  align-items: center;
+  padding: 32px;
+  border-radius: calc(var(--radius-card) + 8px);
+  border: 1px solid rgba(154, 148, 136, 0.3);
+  background:
+    linear-gradient(120deg, rgba(29, 62, 209, 0.16), transparent 60%),
+    var(--color-bg-elevated);
+}
+
+.mobilePhoto img {
+  aspect-ratio: 4 / 3.4;
+}
+
+.mobileKicker {
+  margin-top: 14px;
+  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.btnPrimary,
+.btnSecondary {
+  padding: 15px 28px;
+  border-radius: var(--radius-btn);
+  font-weight: 600;
+  transition: box-shadow 200ms ease, transform 200ms ease;
+}
+
+.btnPrimary {
+  background-color: var(--color-accent);
+  color: #ffffff;
+}
+
+.btnSecondary {
+  border: 1px solid var(--color-chrome-mid);
+  color: var(--color-text);
+}
+
+.btnPrimary:hover,
+.btnSecondary:hover {
+  box-shadow: 0 0 32px rgba(29, 62, 209, 0.6);
+  transform: translateY(-1px);
+}
+
+.btnDisabled {
+  background-color: transparent;
+  border: 1px dashed var(--color-chrome-mid);
+  color: var(--color-text-muted);
+  cursor: default;
+}
+
+/* ---------- Scroll-in reveal (progressive enhancement) ---------- */
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .introPhotos .photo,
+    .ticket,
+    .quoteCard,
+    .strip .photo,
+    .mobile {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+
+    .photoOffset,
+    .quoteCard,
+    .strip .photo:nth-child(2) {
+      animation-range: entry 10% entry 75%;
+    }
+
+    .strip .photo:nth-child(3) {
+      animation-range: entry 20% entry 90%;
+    }
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 900px) {
+  .intro,
+  .packages,
+  .mobile {
+    grid-template-columns: 1fr;
+  }
+
+  .intro {
+    gap: 48px;
+  }
+
+  .photoOffset {
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 88px 16px;
+  }
+
+  .ticket {
+    padding: 28px 22px;
+  }
+
+  .mobile {
+    padding: 20px;
+    gap: 28px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    text-align: center;
+  }
+}

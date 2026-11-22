@@ -11,7 +11,7 @@ const IMAGE_PATH_PATTERN = /^public\/images\/[A-Za-z0-9._-]+$/;
 const REQUIRED_CONTENT_KEYS = [
   'seo', 'businessName', 'phoneDisplay', 'phoneHref', 'instagramDmUrl',
   'instagramPendingLabel', 'logoSrc', 'heroImageSrc', 'nav', 'hero',
-  'beforeAfter', 'gallery', 'reels', 'googleReview', 'pricing', 'contact', 'footer',
+  'beforeAfter', 'gallery', 'reels', 'googleReview', 'pricing', 'aircraft', 'contact', 'footer',
 ];
 
 interface SaveImage {

@@ -14,7 +14,7 @@ import { POST } from './route';
 const VALID_CONTENT = {
   seo: {}, businessName: 'x', phoneDisplay: 'x', phoneHref: 'x', instagramDmUrl: null,
   instagramPendingLabel: 'x', logoSrc: 'x', heroImageSrc: 'x', nav: {}, hero: {},
-  beforeAfter: {}, gallery: {}, reels: {}, googleReview: {}, pricing: {}, contact: {}, footer: {},
+  beforeAfter: {}, gallery: {}, reels: {}, googleReview: {}, pricing: {}, aircraft: {}, contact: {}, footer: {},
 };
 
 function makeRequest(body: unknown) {
