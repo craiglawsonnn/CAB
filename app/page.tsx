@@ -5,6 +5,7 @@ import GallerySection from '@/components/GallerySection';
 import ReelsSection from '@/components/ReelsSection';
 import ReviewsCard from '@/components/ReviewsCard';
 import PricingSection from '@/components/PricingSection';
+import AircraftSection from '@/components/AircraftSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import { siteConfig } from '@/content/site';
@@ -81,6 +82,13 @@ export default function Home() {
           quoteFactorsLabel={siteConfig.pricing.quoteFactorsLabel}
           addonsHeading={siteConfig.pricing.addonsHeading}
           addonsSubtitle={siteConfig.pricing.addonsSubtitle}
+        />
+        <AircraftSection
+          content={siteConfig.aircraft}
+          instagramDmUrl={siteConfig.instagramDmUrl}
+          instagramPendingLabel={siteConfig.instagramPendingLabel}
+          phoneDisplay={siteConfig.phoneDisplay}
+          phoneHref={siteConfig.phoneHref}
         />
         <ContactSection
           instagramDmUrl={siteConfig.instagramDmUrl}

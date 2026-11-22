@@ -17,6 +17,10 @@
         "label": "Services"
       },
       {
+        "href": "#aircraft",
+        "label": "Aircraft"
+      },
+      {
         "href": "#portfolio",
         "label": "Before & After"
       },
@@ -316,6 +320,88 @@
         "price": "$50"
       }
     ]
+  },
+  "aircraft": {
+    "eyebrow": "Aviation Detailing",
+    "heading": "Professional Aircraft Detailing – More Than Just a Clean Aircraft",
+    "intro": [
+      "At CAB Premium Detailing, we understand that an aircraft is much more than just another vehicle. It is a sophisticated machine that requires specialized knowledge, attention to detail, and proper care.",
+      "What sets us apart is our aviation background. Our team brings together practical aviation knowledge, aircraft maintenance education, and firsthand flying experience. We have completed aircraft mechanic training and hold a pilot license, giving us a deeper understanding of aircraft construction, materials, and the importance of proper care.",
+      "We approach every aircraft with the respect and attention it deserves. From exterior washing and cleaning to polishing and protective treatments, our goal is to maintain your aircraft’s appearance while taking care to use appropriate products and methods for aviation surfaces."
+    ],
+    "credentials": [
+      "Aircraft mechanic training",
+      "Licensed pilot",
+      "Aviation-appropriate products & methods"
+    ],
+    "pullQuote": "We don’t just detail aircraft. We understand them.",
+    "tagline": "CAB Premium Detailing – Professional Care. Aviation Knowledge. Attention to Every Detail.",
+    "photos": [
+      {
+        "id": "aircraft-wash",
+        "src": "/images/aircraft-wash.jpg",
+        "alt": "Cessna being foam-washed on the airport ramp",
+        "caption": "Exterior wash"
+      },
+      {
+        "id": "aircraft-polish",
+        "src": "/images/aircraft-polish.jpg",
+        "alt": "Detailer machine-polishing the fuselage of a Cessna",
+        "caption": "Localized polishing"
+      },
+      {
+        "id": "aircraft-cockpit",
+        "src": "/images/aircraft-cockpit.jpg",
+        "alt": "Cleaned Cessna cockpit with instrument panel and seats",
+        "caption": "Interior & panels"
+      },
+      {
+        "id": "aircraft-finished",
+        "src": "/images/aircraft-finished.jpg",
+        "alt": "Freshly detailed Cessna parked on the ramp with a city skyline behind",
+        "caption": "Ready to fly"
+      },
+      {
+        "id": "aircraft-rinse",
+        "src": "/images/aircraft-rinse.jpg",
+        "alt": "Detailer rinsing a Cessna on the wash pad",
+        "caption": "Rinse & dry"
+      },
+      {
+        "id": "aircraft-on-site",
+        "src": "/images/aircraft-on-site.jpg",
+        "alt": "CAB Premium Detailing sign beside an aircraft on the flight line",
+        "caption": "On site at your airport"
+      }
+    ],
+    "packagesHeading": "Aircraft Detailing Packages",
+    "featured": {
+      "id": "cessna-150",
+      "name": "Cessna 150 – Complete Interior & Exterior Detailing",
+      "price": "Starting at $500",
+      "includesLabel": "Our Cessna 150 detailing service includes:",
+      "items": [
+        "Complete exterior wash and cleaning.",
+        "Interior cleaning, including seats, windows, panels, and accessible surfaces.",
+        "Thorough cleaning of the aircraft belly to remove accumulated oil, grease, and dirt.",
+        "Localized polishing of selected areas when necessary and appropriate."
+      ],
+      "note": "Please note: Localized polishing may be included when needed.",
+      "footnote": "*Full-aircraft polishing is not included in this package and is quoted separately."
+    },
+    "customQuote": {
+      "heading": "Other Aircraft – Custom Quotes",
+      "body": "Own a different aircraft? We also offer detailing services for other aircraft types. Pricing depends on aircraft size, condition, and the scope of work.",
+      "cta": "Contact us by phone or Instagram for a personalized quote."
+    },
+    "mobile": {
+      "heading": "Mobile Aircraft Detailing",
+      "kicker": "We come to you!",
+      "body": "CAB Premium Detailing is a mobile service. We are willing to travel to your airport or hangar to provide professional aircraft detailing.",
+      "cta": "Contact us today to schedule your service or request a quote."
+    },
+    "instagramButtonLabel": "Message us on Instagram",
+    "callButtonPrefix": "Call / Text "
   },
   "contact": {
     "heading": "Ready to Book Your Detail?",

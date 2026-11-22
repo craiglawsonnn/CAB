@@ -87,4 +87,17 @@ describe('siteConfig', () => {
   it('uses the confirmed Instagram DM url', () => {
     expect(siteConfig.instagramDmUrl).toBe('https://ig.me/m/cab.premiumdetailing');
   });
+
+  it('has a Cessna 150 aircraft package starting at $500 and aircraft photos on disk', () => {
+    expect(siteConfig.aircraft.featured.id).toBe('cessna-150');
+    expect(siteConfig.aircraft.featured.price).toBe('Starting at $500');
+    expect(siteConfig.aircraft.photos.length).toBeGreaterThan(0);
+    for (const photo of siteConfig.aircraft.photos) {
+      assertImageExists(photo.src);
+    }
+  });
+
+  it('links to the aircraft section from the nav', () => {
+    expect(siteConfig.nav.links.map((link) => link.href)).toContain('#aircraft');
+  });
 });

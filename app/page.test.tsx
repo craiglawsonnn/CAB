@@ -12,6 +12,7 @@ describe('Home page composition', () => {
     expect(document.getElementById('social-showcase')).not.toBeNull();
     expect(document.getElementById('reviews')).not.toBeNull();
     expect(document.getElementById('services')).not.toBeNull();
+    expect(document.getElementById('aircraft')).not.toBeNull();
     expect(document.getElementById('contact')).not.toBeNull();
   });
 

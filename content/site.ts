@@ -136,6 +136,39 @@ export interface PricingConfig {
   addons: PricingItem[];
 }
 
+export interface AircraftPhoto {
+  id: string;
+  src: string;
+  alt: string;
+  caption: string;
+}
+
+export interface AircraftPackage {
+  id: string;
+  name: string;
+  price: string;
+  includesLabel: string;
+  items: string[];
+  note: string;
+  footnote: string;
+}
+
+export interface AircraftConfig {
+  eyebrow: string;
+  heading: string;
+  intro: string[];
+  credentials: string[];
+  pullQuote: string;
+  tagline: string;
+  photos: AircraftPhoto[];
+  packagesHeading: string;
+  featured: AircraftPackage;
+  customQuote: { heading: string; body: string; cta: string };
+  mobile: { heading: string; kicker: string; body: string; cta: string };
+  instagramButtonLabel: string;
+  callButtonPrefix: string;
+}
+
 export interface ContactConfig {
   heading: string;
   body: string;
@@ -170,6 +203,7 @@ export interface SiteConfig {
   reels: ReelsConfig;
   googleReview: GoogleReviewConfig;
   pricing: PricingConfig;
+  aircraft: AircraftConfig;
   contact: ContactConfig;
   footer: FooterConfig;
 }

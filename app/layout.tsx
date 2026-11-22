@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Fraunces, Karla } from 'next/font/google';
 import { siteConfig } from '@/content/site';
+import GoogleTag from '@/components/GoogleTag';
+import { GOOGLE_ADS_CALL_LABEL, GOOGLE_ADS_CONVERSION_LABEL, GOOGLE_ADS_ID } from '@/lib/googleAds';
 import './globals.css';
 
 const fraunces = Fraunces({
@@ -27,7 +29,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${fraunces.variable} ${karla.variable}`} suppressHydrationWarning>
-      <body>{children}</body>
+      <body>
+        {children}
+        <GoogleTag
+          adsId={GOOGLE_ADS_ID}
+          callLabel={GOOGLE_ADS_CALL_LABEL}
+          conversionLabel={GOOGLE_ADS_CONVERSION_LABEL}
+          phoneNumber={siteConfig.phoneDisplay}
+        />
+      </body>
     </html>
   );
 }
